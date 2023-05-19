@@ -1,6 +1,8 @@
 # NgDev
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+```bash
+ng new nd-dev -s -t -p=lab --routing --standalone --style=css
+```
 
 ## Development server
 
