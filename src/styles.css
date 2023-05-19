@@ -9,3 +9,7 @@ span {
   display: inline-block;
   margin-right: 0.5rem;
 }
+
+:root {
+  --primary: #00acc1;
+}
