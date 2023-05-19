@@ -1,29 +1,75 @@
 # NgDev
 
+Sample code for Angular development courses by [Alberto Basalo](https://albertobasalo.dev)
+
+## Generated with Angular CLI 16
+
 ```bash
 ng new nd-dev -s -t -p=lab --routing --standalone --style=css
 ```
 
-## Development server
+## Clone Repository, install dependencies, and run the project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+[Repository on GitHub](https://github.com/AlbertoBasalo/ng-dev)
 
-## Code scaffolding
+```bash
+# clone repository
+git clone https://github.com/AlbertoBasalo/ng-dev.git
+cd ng_dev
+# install dependencies
+npm i
+# run project
+npm start
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠 VS Code configuration
 
-## Build
+- [My Visual Studio Code .dotfiles](https://github.com/AlbertoBasalo/dotfiles)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### ⚙️ Settings
 
-## Running unit tests
+- [How to configure VSCode to code better TypeScript](https://albertobasalo.medium.com/how-to-configure-vscode-to-code-better-typescript-d6e000b2cb06?sk=4c0edee7dd123c0e0c7c6f7266c91e4d)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [My settings.json](https://github.com/AlbertoBasalo/dotfiles/blob/main/settings.json)
 
-## Running end-to-end tests
+### 🧩 Extensions
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [5 VSCode extensions to write better TypeScript](https://albertobasalo.medium.com/5-vscode-extensions-to-write-better-typescript-9804acbada9?sk=8907a533ca7e5b14aa2daa397bb667d1)
 
-## Further help
+- [All the Extensions I use](https://github.com/AlbertoBasalo/dotfiles/blob/main/extensions-i-use.md)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 👩🏼‍⚖️ EsLint rules
+
+- [Fine-tune ESLint rules to write better TypeScript](https://albertobasalo.medium.com/fine-tune-eslint-rules-to-code-better-typescript-e4cabbbe2fa1?sk=fe0c1c07936f2c4a503dbce0272da621)
+
+- [My eslint.json](https://github.com/AlbertoBasalo/dotfiles/blob/main/eslint.json)
+
+#### ⌨ VS Code Shortcuts
+
+- `F1` :command list
+- `CTRL+P` : file
+- `CTRL+T` : search code
+- `CTRL+K CTRL+Z` : code comment
+- `CTRL+K CTRL+U` : uncomment code
+- `F12` : go to definition
+- `CTRL+Ñ` : show hide terminal
+- `CTRL+B`: show hide navigation bar
+- `CTRL+K S` : save al files
+- `ALT+up|down` : move line
+
+---
+
+<footer>
+  <h3>🧑🏼‍💻 By <a href="https://albertobasalo.dev" target="blank">Alberto Basalo</a> </h3>
+  <p>
+    <a href="https://twitter.com/albertobasalo" target="blank">
+      <img src="https://img.shields.io/twitter/follow/albertobasalo?logo=twitter&style=for-the-badge" alt="twitter albertobasalo" />
+    </a>
+  </p>
+  <p>
+    <a href="https://github.com/albertobasalo" target="blank">
+      <img 
+        src="https://img.shields.io/github/followers/albertobasalo?logo=github&label=profile albertobasalo&style=for-the-badge" alt="git albertobasalo" />
+    </a>
+  </p>
+</footer>
