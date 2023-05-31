@@ -10,6 +10,7 @@
           "changeDetection": "OnPush",
           "inlineTemplate": true,
           "inlineStyle": true,
+          "skipTests": true,
           "standalone": true
         },
         "@schematics/angular:directive": {

@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
+import {
+  getError,
+  markError,
+  mismatch,
+  passwordValidations,
+} from 'src/app/core/form.functions';
 
 @Component({
   selector: 'lab-sign-up',
@@ -17,56 +20,65 @@ import {
   template: `
     <form [formGroup]="form">
       <label for="username">
-        <span for="username">Username </span>
-        <sub *ngIf="markError('username')">
+        <span for="username">👤 Username </span>
+        <sub *ngIf="markError('username')" data-test="username.error">
           <i>{{ getError('username') }}</i>
         </sub>
         <input
           id="username"
+          name="username"
           type="text"
           formControlName="username"
           [attr.aria-invalid]="markError('username')"
         />
       </label>
       <label for="email">
-        <span>Email</span>
+        <span>📧 Email</span>
         <sub *ngIf="markError('email')">
           <i>{{ getError('email') }}</i>
         </sub>
         <input
           id="email"
+          name="email"
           type="email"
           formControlName="email"
           [attr.aria-invalid]="markError('email')"
         />
       </label>
-      <label for="password">
-        <span>Password</span>
-        <sub *ngIf="markError('password')">
-          <i>{{ getError('password') }}</i>
-        </sub>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          [attr.aria-invalid]="markError('password')"
-        />
-      </label>
-      <label for="repeatPassword">
-        <span>Repeat password</span>
-        <sub *ngIf="markError('repeatPassword')">
-          <i>{{ getError('repeatPassword') }}</i>
-        </sub>
-        <input
-          id="repeatPassword"
-          type="password"
-          formControlName="repeatPassword"
-          [attr.aria-invalid]="markError('repeatPassword')"
-        />
-      </label>
+      <section class="grid">
+        <label for="password">
+          <span>🤫 Password</span>
+          <sub *ngIf="markError('password')">
+            <i>{{ getError('password') }}</i>
+          </sub>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            formControlName="password"
+            [attr.aria-invalid]="markError('password')"
+          />
+        </label>
+        <label for="repeatPassword">
+          <span>🤫 Repeat password</span>
+          <sub *ngIf="markError('repeatPassword')">
+            <i>{{ getError('repeatPassword') }}</i>
+          </sub>
+          <input
+            id="repeatPassword"
+            type="password"
+            name="repeatPassword"
+            formControlName="repeatPassword"
+            [attr.aria-invalid]="markError('repeatPassword')"
+          />
+        </label>
+      </section>
       <section class="grid">
         <section>
           <a role="button" class="contrast outline">Go to log-in page</a>
+        </section>
+        <section>
+          <button class="contrast outline" (click)="form.reset()">Reset</button>
         </section>
         <section>
           <button
@@ -84,13 +96,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SignUpPage {
-  form = new FormGroup(
+  form: FormGroup = new FormGroup(
     {
-      username: new FormControl('a', [
+      username: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
       ]),
-      email: new FormControl('a@b.c', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', passwordValidations),
       repeatPassword: new FormControl('', passwordValidations),
     },
@@ -104,31 +116,10 @@ export default class SignUpPage {
   }
 
   markError(controlName: string): boolean | null {
-    const control = this.form.get(controlName);
-    if (!control) return null;
-    if (!(control.touched || control.dirty)) return null;
-    return control.invalid && (control.touched || control.dirty);
+    return markError(this.form, controlName);
   }
 
   getError(controlName: string): string {
-    const control = this.form.get(controlName);
-    if (!control) return '';
-    if (!(control.touched || control.dirty)) return '';
-    return JSON.stringify(control.errors);
+    return getError(this.form, controlName);
   }
-}
-
-const passwordValidations = [
-  Validators.required,
-  Validators.minLength(4),
-  Validators.maxLength(8),
-  Validators.pattern(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/),
-];
-
-function mismatch(target: string, repeat: string): ValidatorFn {
-  return (form: AbstractControl): null | ValidationErrors => {
-    const password = form.get(target)?.value;
-    const repeatPassword = form.get(repeat)?.value;
-    return password === repeatPassword ? null : { mismatch: true };
-  };
 }
