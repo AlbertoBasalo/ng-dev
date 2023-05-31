@@ -1,42 +1,34 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ErrorComponent } from 'src/app/shared/error/error.component';
 import { ListComponent } from 'src/app/shared/list/list.component';
 import { LoadingComponent } from 'src/app/shared/loading/loading.component';
+import { HomeFacade } from './home.facade';
 @Component({
   selector: 'lab-home',
   standalone: true,
   imports: [CommonModule, LoadingComponent, ErrorComponent, ListComponent],
   template: `
     <lab-loading *ngIf="loading()" />
-    <lab-error *ngIf="errorMessage()" />
-    <lab-list *ngIf="!loading() && !errorMessage()" [items]="activities()" />
+    <lab-error *ngIf="hasError()" [errorMessage]="errorMessage()" />
+    <lab-list
+      *ngIf="showData()"
+      [items]="activities()"
+      caption="Activity list"
+    />
   `,
   styles: [],
+  providers: [HomeFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
-  #http = inject(HttpClient);
-  loading = signal(false);
-  errorMessage = signal('');
-  activities = signal<object[]>([]);
+  #homeFacade: HomeFacade = inject(HomeFacade);
+  loading = this.#homeFacade.loading;
+  hasError = this.#homeFacade.hasError;
+  activities = this.#homeFacade.activities;
+  errorMessage = this.#homeFacade.errorMessage;
+  showData = this.#homeFacade.showData;
   constructor() {
-    this.loading.set(true);
-    this.#http.get<object[]>('http://localhost:3000/activities').subscribe({
-      next: (body) => {
-        this.activities.set(body);
-        this.loading.set(false);
-      },
-      error: (e) => {
-        this.errorMessage.set(e.message);
-        this.loading.set(false);
-      },
-    });
+    this.#homeFacade.getActivities();
   }
 }
