@@ -13,3 +13,27 @@ span {
 :root {
   --primary: #00acc1;
 }
+
+.grid.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+.grid.three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.grid.one-two {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.right-align {
+  text-align: right;
+}
+.left-align {
+  text-align: left;
+}

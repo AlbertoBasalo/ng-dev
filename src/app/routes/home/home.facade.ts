@@ -13,7 +13,8 @@ export class HomeFacade {
   showData = computed(() => !this.loading() && !this.#error());
   getActivities(): void {
     this.loading.set(true);
-    this.#http.get<object[]>(this.#api).subscribe({
+    const publishedUrl = `${this.#api}?state=published`;
+    this.#http.get<object[]>(publishedUrl).subscribe({
       next: (body) => {
         this.activities.set(body);
         this.loading.set(false);
