@@ -7,9 +7,13 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <header>
+    <header role="banner">
       <nav>
-        <h1 [routerLink]="['/']">{{ title }}</h1>
+        <ul>
+          <li>
+            <strong [routerLink]="['/']">{{ title }}</strong>
+          </li>
+        </ul>
         <ul>
           <li [routerLink]="['auth', 'sign-up']"><a>🔏 Sign up</a></li>
           <!-- <li><a>🔐 Log in</a></li> -->

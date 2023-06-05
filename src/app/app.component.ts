@@ -18,5 +18,5 @@ import { HeaderComponent } from './layout/header/header.component';
   styles: [],
 })
 export class AppComponent {
-  title = 'Activity Bookings';
+  title = '🎫 Activity Bookings';
 }

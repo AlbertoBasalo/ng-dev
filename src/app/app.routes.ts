@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./routes/auth/sign-up/sign-up.page'),
   },
   {
+    path: 'activities/:slug',
+    loadComponent: () => import('./routes/activities/detail/detail.page'),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

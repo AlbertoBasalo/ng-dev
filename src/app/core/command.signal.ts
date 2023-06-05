@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 export class CommandSignal<T> {
   readonly isWorking = signal(false);
-  readonly result = signal<T | T[] | null>(null);
+  readonly result = signal<T | null>(null);
   readonly error = signal<object | null>(null);
   // derived states
   readonly hasError = computed(() => this.error() !== null);
@@ -24,7 +24,7 @@ export class CommandSignal<T> {
     return e instanceof Error ? e.message : JSON.stringify(e);
   });
 
-  execute(command$: Observable<T | T[]>) {
+  execute(command$: Observable<T>) {
     this.start();
     command$.subscribe({
       next: (body) => this.succeed(body),
@@ -42,7 +42,7 @@ export class CommandSignal<T> {
     this.result.set(null);
     this.error.set(error);
   }
-  private succeed(result: T | T[]): void {
+  private succeed(result: T): void {
     this.isWorking.set(false);
     this.result.set(result);
     this.error.set(null);
