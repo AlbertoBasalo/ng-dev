@@ -6,3 +6,4 @@ ng g c shared/loading
 ng g c shared/error
 ng g c shared/list
 ng g class routes/home/home --type=facade
+ng g class core/command --type=state

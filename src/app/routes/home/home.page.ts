@@ -18,14 +18,14 @@ import { HomeFacade } from './home.facade';
     DatePipe,
   ],
   template: `
-    <lab-loading *ngIf="getActivitiesState.isWorking()" />
+    <lab-loading *ngIf="getActivitiesSignal.isWorking()" />
     <lab-error
-      *ngIf="getActivitiesState.hasError()"
-      [errorMessage]="getActivitiesState.errorMessage()"
+      *ngIf="getActivitiesSignal.hasError()"
+      [errorMessage]="getActivitiesSignal.errorMessage()"
     />
     <lab-list
-      *ngIf="getActivitiesState.isCompleted()"
-      [items]="getActivitiesState.result() ?? []"
+      *ngIf="getActivitiesSignal.isCompleted()"
+      [items]="getActivitiesSignal.result() ?? []"
       [itemTemplate]="activityItem"
       caption="Published activities"
     />
@@ -53,7 +53,7 @@ import { HomeFacade } from './home.facade';
 })
 export class HomePage {
   #homeFacade: HomeFacade = inject(HomeFacade);
-  getActivitiesState = this.#homeFacade.getActivitiesState;
+  getActivitiesSignal = this.#homeFacade.getActivitiesSignal;
   constructor() {
     this.#homeFacade.getActivities();
   }
