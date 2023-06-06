@@ -2,19 +2,23 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit, computed, inject } from '@angular/core';
 import { DataComponent } from 'src/app/shared/data.component';
 import { DateComponent } from 'src/app/shared/date.component';
+import { LocationBlock } from 'src/app/shared/location.block';
 import { PriceComponent } from 'src/app/shared/price.component';
 import { DetailFacade } from './detail.facade';
 
 @Component({
   selector: 'lab-detail',
   standalone: true,
-  imports: [CommonModule, DateComponent, PriceComponent, DataComponent],
+  imports: [CommonModule, DateComponent, PriceComponent, DataComponent, LocationBlock],
   template: `
     <article *ngIf="getActivity.result() as activity" [attr.name]="slug">
       <header class="headings">
         <h1>{{ activity.title }}</h1>
         <p>
-          at {{ activity.location }} ({{ activity.country }}) on
+          <lab-location
+            [location]="activity.location"
+            [country]="activity.country"
+            [countryCode]="activity.countryCode" />
           <lab-date [date]="activity.date" />
         </p>
       </header>

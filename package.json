@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "@picocss/pico": "^1.5.10",
+    "flag-icon-css": "^4.1.7",
     "marked": "^5.0.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

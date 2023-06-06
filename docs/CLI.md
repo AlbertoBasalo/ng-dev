@@ -18,13 +18,14 @@ ng g c shared/price
 ng g c shared/data
 ng g c shared/link
 ng g c routes/home/activity --type=item
+ng g c shared/location --type=block
+npm install flag-icon-css
 
 // To Do
-A location atom to reuse with predefined format (including country... and flag)
 
 Standardize component types
 
-- [ ] block
+- [x] block
 - [ ] card
 - [x] dialog
 - [ ] form
