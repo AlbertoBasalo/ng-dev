@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  TemplateRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'lab-list',
@@ -12,20 +7,15 @@ import {
   imports: [CommonModule],
   template: `
     <article [attr.name]="caption">
-      <hgroup>
+      <header class="headings">
         <h2>📋 {{ caption }}</h2>
         <p>
           Showing <b name="items-count">{{ items.length }}</b> items
         </p>
-      </hgroup>
+      </header>
       <main *ngIf="items.length > 0" name="list-content">
         <div *ngFor="let item of items">
-          <ng-container
-            *ngTemplateOutlet="
-              itemTemplate ? itemTemplate : defaultItem;
-              context: { $implicit: item }
-            "
-          />
+          <ng-container *ngTemplateOutlet="itemTemplate ? itemTemplate : defaultItem; context: { $implicit: item }" />
         </div>
       </main>
       <aside *ngIf="items.length === 0">🕳️ No data yet!</aside>

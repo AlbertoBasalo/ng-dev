@@ -8,6 +8,7 @@ export class DetailFacade {
   #api = 'http://localhost:3000/activities?slug=';
   #http = inject(HttpClient);
   getActivitySignal = new CommandSignal<any>();
+
   getActivity(slug: string): void {
     const url = `${this.#api}${slug}`;
     const command$ = this.#http.get<any[]>(url).pipe(map((list) => list[0]));

@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
       <nav>
         <ul>
           <li>
-            <strong [routerLink]="['/']">{{ title }}</strong>
+            <span class="app-title" [routerLink]="['/']">{{ title }}</span>
           </li>
         </ul>
         <ul>
@@ -21,6 +21,14 @@ import { RouterLink } from '@angular/router';
       </nav>
     </header>
   `,
+  styles: [
+    `
+      .app-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
