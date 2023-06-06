@@ -14,9 +14,9 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular
         </p>
       </header>
       <main *ngIf="items.length > 0" name="list-content">
-        <div *ngFor="let item of items">
+        <ng-container *ngFor="let item of items">
           <ng-container *ngTemplateOutlet="itemTemplate ? itemTemplate : defaultItem; context: { $implicit: item }" />
-        </div>
+        </ng-container>
       </main>
       <aside *ngIf="items.length === 0">🕳️ No data yet!</aside>
     </article>
