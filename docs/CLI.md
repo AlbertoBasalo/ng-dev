@@ -22,6 +22,9 @@ ng g c shared/location --type=block
 npm install flag-icon-css
 
 // To Do
+Book an activity
+Create an activity
+Edit an activity (owner)
 
 Standardize component types
 
