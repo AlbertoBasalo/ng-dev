@@ -26,10 +26,15 @@ Standardize component types
 
 - [ ] block
 - [ ] card
-- [ ] dialog
+- [x] dialog
 - [ ] form
 - [x] item
 - [ ] list
-- [ ] detail
 - [x] page
 - [ ] widget
+
+Standardize service/class types
+
+- [x] facade
+- [x] state
+- [ ] store

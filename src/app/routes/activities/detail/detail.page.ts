@@ -37,7 +37,7 @@ import { DetailFacade } from './detail.facade';
 export default class DetailPage implements OnInit {
   @Input() slug: string | null = null;
   #detailFacade: DetailFacade = inject(DetailFacade);
-  getActivity = this.#detailFacade.getActivitySignal;
+  getActivity = this.#detailFacade.getActivityState;
   description = computed(() => this.#detailFacade.getDescription(this.getActivity.result()));
 
   ngOnInit(): void {

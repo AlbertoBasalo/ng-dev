@@ -1,7 +1,7 @@
 import { computed, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export class CommandSignal<T> {
+export class CommandState<T> {
   readonly isWorking = signal(false);
   readonly result = signal<T | null>(null);
   readonly error = signal<object | null>(null);

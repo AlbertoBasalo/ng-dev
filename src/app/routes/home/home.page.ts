@@ -27,7 +27,7 @@ import { HomeFacade } from './home.facade';
 })
 export class HomePage {
   #homeFacade: HomeFacade = inject(HomeFacade);
-  getActivities = this.#homeFacade.getActivitiesSignal;
+  getActivities = this.#homeFacade.getActivitiesState;
 
   constructor() {
     this.#homeFacade.getActivities();
