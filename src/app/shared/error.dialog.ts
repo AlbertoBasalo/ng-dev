@@ -21,7 +21,7 @@ import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ErrorComponent {
+export class ErrorDialog {
   @Input() errorMessage = '';
   open = signal(true);
   constructor() {

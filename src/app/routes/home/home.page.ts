@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ErrorComponent } from 'src/app/shared/error.component';
+import { ErrorDialog } from 'src/app/shared/error.dialog';
 import { ListComponent } from 'src/app/shared/list.component';
 import { LoadingComponent } from 'src/app/shared/loading.component';
 import { ActivityItem } from './activity.item';
@@ -8,7 +8,7 @@ import { HomeFacade } from './home.facade';
 @Component({
   selector: 'lab-home',
   standalone: true,
-  imports: [CommonModule, LoadingComponent, ErrorComponent, ListComponent, ActivityItem],
+  imports: [CommonModule, LoadingComponent, ErrorDialog, ListComponent, ActivityItem],
   template: `
     <lab-loading *ngIf="getActivities.isWorking()" />
     <lab-error *ngIf="getActivities.hasError()" [errorMessage]="getActivities.errorMessage()" />

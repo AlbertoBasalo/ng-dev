@@ -25,6 +25,8 @@ A location atom to reuse with predefined format (including country... and flag)
 Standardize component types
 
 - [ ] block
+- [ ] card
+- [ ] dialog
 - [ ] form
 - [x] item
 - [ ] list
