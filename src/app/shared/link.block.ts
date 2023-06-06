@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LinkComponent {
+export class LinkBlock {
   @Input() routerLink: string[] = [];
   @Input() icon: string = '➡️';
   @Input() caption: string = '';

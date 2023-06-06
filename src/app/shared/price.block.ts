@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PriceComponent {
+export class PriceBlock {
   @Input() price: number = 0;
   @Input() currency: string = 'USD';
 }

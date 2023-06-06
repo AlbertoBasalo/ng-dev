@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit, computed, inject } from '@angular/core';
-import { DataComponent } from 'src/app/shared/data.component';
-import { DateComponent } from 'src/app/shared/date.component';
+import { DataBlock } from 'src/app/shared/data.block';
+import { DateBlock } from 'src/app/shared/date.block';
 import { LocationBlock } from 'src/app/shared/location.block';
-import { PriceComponent } from 'src/app/shared/price.component';
+import { PriceBlock } from 'src/app/shared/price.block';
 import { DetailFacade } from './detail.facade';
 
 @Component({
   selector: 'lab-detail',
   standalone: true,
-  imports: [CommonModule, DateComponent, PriceComponent, DataComponent, LocationBlock],
+  imports: [CommonModule, DateBlock, PriceBlock, DataBlock, LocationBlock],
   template: `
     <article *ngIf="getActivity.result() as activity" [attr.name]="slug">
       <header class="headings">

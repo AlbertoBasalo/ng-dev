@@ -24,7 +24,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DataComponent {
+export class DataBlock {
   @Input() term: string = '';
   @Input() data: string = '';
 }

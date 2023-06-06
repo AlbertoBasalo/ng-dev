@@ -3,7 +3,7 @@ ng g c layout/footer
 ng g c routes/home --type=page
 ng g c routes/auth/sign-up --type=page
 ng g c shared/loading
-ng g c shared/error
+ng g c shared/error --type=dialog
 ng g c shared/list
 ng g class routes/home/home --type=facade
 ng g class core/command --type=state
@@ -13,10 +13,10 @@ ng g class routes/activities/detail/detail --type=facade
 npm install marked
 npm install @types/marked -D
 
-ng g c shared/date
-ng g c shared/price
-ng g c shared/data
-ng g c shared/link
+ng g c shared/date --type=block
+ng g c shared/price --type=block
+ng g c shared/data --type=block
+ng g c shared/link --type=block
 ng g c routes/home/activity --type=item
 ng g c shared/location --type=block
 npm install flag-icon-css
