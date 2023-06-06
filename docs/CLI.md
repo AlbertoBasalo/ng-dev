@@ -17,17 +17,17 @@ ng g c shared/date
 ng g c shared/price
 ng g c shared/data
 ng g c shared/link
-ng g c routes/home/activity --type=template
+ng g c routes/home/activity --type=item
 
 // To Do
 A location atom to reuse with predefined format (including country... and flag)
 
 Standardize component types
 
-- [ ] atom
+- [ ] block
 - [ ] form
+- [x] item
 - [ ] list
 - [ ] detail
 - [x] page
-- [x] template
 - [ ] widget

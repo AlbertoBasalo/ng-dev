@@ -18,6 +18,6 @@ import { PriceComponent } from 'src/app/shared/price.component';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActivityTemplate {
+export class ActivityItem {
   @Input({ required: true }) activity: any;
 }
