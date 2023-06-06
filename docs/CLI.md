@@ -9,11 +9,25 @@ ng g class routes/home/home --type=facade
 ng g class core/command --type=state
 ng g c routes/activities/detail --type=page
 ng g class routes/activities/detail/detail --type=facade
+
 npm install marked
 npm install @types/marked -D
 
-// To Do
+ng g c shared/date
+ng g c shared/price
+ng g c shared/data
+ng g c shared/link
+ng g c routes/home/activity --type=template
 
-A date atom to reuse with predefined format
-A price atom to reuse with predefined format (including currency)
+// To Do
 A location atom to reuse with predefined format (including country... and flag)
+
+Standardize component types
+
+- [ ] atom
+- [ ] form
+- [ ] list
+- [ ] detail
+- [x] page
+- [x] template
+- [ ] widget
