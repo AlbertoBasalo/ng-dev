@@ -26,7 +26,7 @@
       "prefix": "lab",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/ng-dev",
             "index": "src/index.html",
@@ -34,11 +34,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.css",
-              "node_modules/@picocss/pico/css/pico.min.css",
-              "node_modules/flag-icon-css/css/flag-icons.min.css"
-            ],
+            "styles": ["src/styles.css", "node_modules/@picocss/pico/css/pico.min.css"],
             "scripts": []
           },
           "configurations": {

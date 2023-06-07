@@ -1,0 +1,37 @@
+PS C:\code\ab\ng-dev> npm start
+
+> ng-dev@16.0.0 start
+> ng serve
+
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files                                | Names                                |  Raw Size
+vendor.js                                          | vendor                               |   2.27 MB |
+styles.css, styles.js                              | styles                               | 331.48 kB |
+polyfills.js                                       | polyfills                            | 329.31 kB |
+main.js                                            | main                                 |  43.85 kB |
+runtime.js                                         | runtime                              |  12.61 kB |
+
+                                                   | Initial Total                        |   2.97 MB
+
+Lazy Chunk Files                                   | Names                                |  Raw Size
+src_app_routes_auth_sign-up_sign-up_page_ts.js     | routes-auth-sign-up-sign-up-page     | 306.00 kB |
+src_app_routes_activities_detail_detail_page_ts.js | routes-activities-detail-detail-page | 103.63 kB |
+
+Build at: 2023-06-07T15:23:21.600Z - Hash: 03e1aeb4ec4762a6 - Time: 16678ms
+
+Initial Chunk Files      | Names         |  Raw Size
+main.js                  | main          | 256.51 kB |
+polyfills.js             | polyfills     |  82.88 kB |
+styles.css               | styles        |  79.05 kB |
+
+                         | Initial Total | 418.44 kB
+
+Lazy Chunk Files         | Names         |  Raw Size
+chunk-4WWRLEFX.js        | -             | 782.53 kB |
+sign-up.page-22S7X33F.js | -             | 212.42 kB |
+detail.page-7XZOMCJH.js  | -             |  80.39 kB |
+chunk-ECCLOFVW.js        | -             |  59.93 kB |
+chunk-N6LDB3N6.js        | -             |   1.77 kB |
+
+Application bundle generation complete. [3.257 seconds]

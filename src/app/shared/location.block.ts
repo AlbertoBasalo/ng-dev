@@ -5,11 +5,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'lab-location',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <address [attr.data-tooltip]="country">
-      📌 {{ location }} <span class="flag-icon flag-icon-{{ countryCode }}"></span>
-    </address>
-  `,
+  template: ` <address [attr.data-tooltip]="country"> 📌 {{ location }} ({{ countryCode }}) </address> `,
   styles: [
     `
       address {
