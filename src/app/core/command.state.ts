@@ -33,16 +33,19 @@ export class CommandState<T> {
   }
 
   private start(): void {
+    // console.log('start');
     this.isWorking.set(true);
     this.result.set(null);
     this.error.set(null);
   }
   private fail(error: object): void {
+    // console.log('fail');
     this.isWorking.set(false);
     this.result.set(null);
     this.error.set(error);
   }
   private succeed(result: T): void {
+    // console.log('succeed');
     this.isWorking.set(false);
     this.result.set(result);
     this.error.set(null);

@@ -19,9 +19,13 @@ ng g c shared/data --type=block
 ng g c shared/link --type=block
 ng g c routes/home/activity --type=item
 ng g c shared/location --type=block
-npm install flag-icon-css
+// npm install flag-icon-css
+
+ng g c routes/auth/sign-up/sign-up --type=form
 
 // To Do
+global store to hold user info and show/hide header menu items
+interceptor to add auth token to requests
 Book an activity
 Create an activity
 Edit an activity (owner)
