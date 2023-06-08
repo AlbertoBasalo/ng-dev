@@ -25,6 +25,10 @@
         },
         "@schematics/angular:service": {
           "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "functional": true,
+          "skipTests": true
         }
       },
       "root": "",

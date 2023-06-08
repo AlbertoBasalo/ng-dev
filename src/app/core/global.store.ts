@@ -40,4 +40,9 @@ export class GlobalStore {
     localStorage.setItem('user-access-token', JSON.stringify(userToken));
     this.#router.navigate(['/']);
   }
+  removeUserToken(): void {
+    this.#userToken.set(defaultToken);
+    localStorage.removeItem('user-access-token');
+    this.#router.navigate(['/auth', 'sign-up']);
+  }
 }
