@@ -8,5 +8,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(),
+    // { provide: NgZone, useValue: new ɵNoopNgZone() },
   ],
 };
