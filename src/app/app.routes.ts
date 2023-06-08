@@ -11,8 +11,12 @@ export const routes: Routes = [
     loadComponent: () => import('./routes/auth/sign-up/sign-up.page'),
   },
   {
+    path: 'activities/mines',
+    loadComponent: () => import('./routes/activities/mines.page'),
+  },
+  {
     path: 'activities/:slug',
-    loadComponent: () => import('./routes/activities/detail/detail.page'),
+    loadComponent: () => import('./routes/activities/detail.page'),
   },
   {
     path: '**',

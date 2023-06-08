@@ -8,7 +8,7 @@ ng g c shared/list
 ng g class routes/home/home --type=facade
 ng g class core/command --type=state
 ng g c routes/activities/detail --type=page
-ng g class routes/activities/detail/detail --type=facade
+ng g class routes/activities/detail --type=facade
 
 npm install marked
 npm install @types/marked -D
@@ -26,12 +26,8 @@ ng g class core/global --type=store
 ng g interceptor core/auth
 ng g interceptor core/error
 
-// To Do
-global store to hold user info and show/hide header menu items
-interceptor to add auth token to requests
-Book an activity
-Create an activity
-Edit an activity (owner)
+ng g c routes/activities/mines --type=page
+ng g class routes/activities/mines --type=facade
 
 Standardize component types
 

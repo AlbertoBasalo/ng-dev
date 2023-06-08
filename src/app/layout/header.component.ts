@@ -22,7 +22,7 @@ import { GlobalStore } from '../core/global.store';
           <!-- <li><a>🔐 Log in</a></li> -->
         </ul>
         <ul *ngIf="isLogged()" id="user-menu">
-          <li [routerLink]="['']">
+          <li [routerLink]="['activities', 'mines']">
             <a>⏳ My activities</a>
           </li>
           <li>
