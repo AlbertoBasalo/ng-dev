@@ -23,6 +23,7 @@ ng g c shared/location --type=block
 ng g c routes/auth/sign-up/sign-up --type=form
 ng g class core/global --type=store
 
+ng g interceptor core/auth --skipTests=true --functional
 // To Do
 global store to hold user info and show/hide header menu items
 interceptor to add auth token to requests
