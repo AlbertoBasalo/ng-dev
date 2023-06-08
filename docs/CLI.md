@@ -19,9 +19,9 @@ ng g c shared/data --type=block
 ng g c shared/link --type=block
 ng g c routes/home/activity --type=item
 ng g c shared/location --type=block
-// npm install flag-icon-css
 
 ng g c routes/auth/sign-up/sign-up --type=form
+ng g class core/global --type=store
 
 // To Do
 global store to hold user info and show/hide header menu items

@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { CommandState } from 'src/app/core/command.state';
 
+import { GlobalStore, UserToken } from 'src/app/core/global.store';
 import { ErrorDialog } from 'src/app/shared/error.dialog';
 import { SignUpForm } from './sign-up.form';
 
@@ -22,16 +22,14 @@ import { SignUpForm } from './sign-up.form';
 export default class SignUpPage {
   #api = 'http://localhost:3000/register';
   #http = inject(HttpClient);
-  #router = inject(Router);
-  postRegister = new CommandState<object>();
+  #globalStore = inject(GlobalStore);
+
+  postRegister = new CommandState<UserToken>();
 
   onSingUp(newCredentials: object): void {
-    const command$ = this.#http.post<object>(this.#api, newCredentials).pipe(
-      tap((response) => {
-        localStorage.setItem('user-access-token', JSON.stringify(response));
-        this.#router.navigate(['/']);
-      })
-    );
+    const command$ = this.#http
+      .post<UserToken>(this.#api, newCredentials)
+      .pipe(tap((userToken) => this.#globalStore.setUserToken(userToken)));
     this.postRegister.execute(command$);
   }
 }

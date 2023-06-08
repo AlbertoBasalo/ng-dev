@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { GlobalStore } from '../core/global.store';
 
 @Component({
   selector: 'lab-header',
@@ -14,9 +15,19 @@ import { RouterLink } from '@angular/router';
             <span class="app-title" [routerLink]="['/']">{{ title }}</span>
           </li>
         </ul>
-        <ul>
-          <li [routerLink]="['auth', 'sign-up']"><a>🔏 Sign up</a></li>
+        <ul *ngIf="!isLogged()" id="anonymous-menu">
+          <li [routerLink]="['auth', 'sign-up']">
+            <a>🔏 Sign up</a>
+          </li>
           <!-- <li><a>🔐 Log in</a></li> -->
+        </ul>
+        <ul *ngIf="isLogged()" id="user-menu">
+          <li [routerLink]="['']">
+            <a>⏳ My activities</a>
+          </li>
+          <li>
+            <a>👤 {{ user().name }}</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -33,4 +44,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   @Input({ required: true }) title: string = '';
+  #globalStore = inject(GlobalStore);
+  isLogged = this.#globalStore.isLogged;
+  user = this.#globalStore.user;
 }
