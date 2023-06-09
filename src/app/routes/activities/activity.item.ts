@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { DataBlock } from 'src/app/shared/data.block';
 import { DateBlock } from 'src/app/shared/date.block';
 import { LinkBlock } from 'src/app/shared/link.block';
@@ -12,7 +12,7 @@ import { PriceBlock } from 'src/app/shared/price.block';
   imports: [CommonModule, DataBlock, LinkBlock, PriceBlock, DateBlock, LocationBlock],
   template: `
     <details name="activity-item" [id]="activity.slug" class="grid two">
-      <summary>{{ activity.title }}</summary>
+      <summary>{{ activity.title }} ({{ activity.state | uppercase }})</summary>
       <article name="details">
         <header>
           <h5>
@@ -34,10 +34,14 @@ import { PriceBlock } from 'src/app/shared/price.block';
           <lab-data term="Current reservations" [data]="bookingsCount + ' bookings.'"></lab-data>
           <progress [value]="getTempValue()" [max]="activity.capacity"></progress>
         </main>
-        <footer class="grid three">
-          <button class="button primary">Publish Activity</button>
-          <button class="button secondary">Cancel Activity</button>
-          <button class="button contrast">Finished Activity</button>
+        <footer *ngIf="['draft', 'published'].includes(activity.state)" class="grid three">
+          <button
+            [name]="'change-state-to-' + button.to"
+            *ngFor="let button of getChangeStateButtons()"
+            [class]="button.class"
+            (click)="changeState.emit(button.to)">
+            {{ button.caption }}
+          </button>
         </footer>
       </article>
     </details>
@@ -48,6 +52,17 @@ import { PriceBlock } from 'src/app/shared/price.block';
 export class ActivityItem {
   @Input({ required: true }) activity: any;
   @Input() bookingsCount: number = 0;
+  @Output() changeState = new EventEmitter<string>();
+  changeStateButtons: any[] = [
+    { caption: 'Return to Draft', to: 'draft', from: ['published'], class: 'outline primary' },
+    { caption: 'Publish', to: 'published', from: ['draft'], class: 'primary' },
+    { caption: 'Cancel', to: 'cancelled', from: ['draft', 'published'], class: 'secondary' },
+    { caption: 'Mark as Finished', to: 'finished', from: ['published'], class: 'contrast' },
+  ];
+
+  getChangeStateButtons(): any[] {
+    return this.changeStateButtons.filter((button) => button.from.includes(this.activity.state));
+  }
 
   getTempValue(): number {
     return Math.floor(Math.random() * this.activity.capacity);

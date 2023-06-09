@@ -20,7 +20,7 @@ import { MinesFacade } from './mines.facade';
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>
-      <lab-activity [activity]="activity" />
+      <lab-activity [activity]="activity" (changeState)="onChangeState(activity, $event)" />
     </ng-template>
   `,
   styles: [],
@@ -32,5 +32,9 @@ export default class MinesPage {
   getMyActivities = this.#minesFacade.getMyActivitiesState;
   constructor() {
     this.#minesFacade.getMyActivities();
+  }
+  onChangeState(activity: any, state: string) {
+    activity.state = state;
+    this.#minesFacade.putActivity(activity);
   }
 }
