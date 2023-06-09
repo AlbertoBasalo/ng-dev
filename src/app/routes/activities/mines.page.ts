@@ -3,12 +3,13 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ErrorDialog } from 'src/app/shared/error.dialog';
 import { ListComponent } from 'src/app/shared/list.component';
 import { LoadingComponent } from 'src/app/shared/loading.component';
+import { ActivityItem } from './activity.item';
 import { MinesFacade } from './mines.facade';
 
 @Component({
   selector: 'lab-mines',
   standalone: true,
-  imports: [CommonModule, LoadingComponent, ErrorDialog, ListComponent],
+  imports: [CommonModule, ActivityItem, LoadingComponent, ErrorDialog, ListComponent],
   template: `
     My activities
     <lab-loading *ngIf="getMyActivities.isWorking()" />
@@ -16,7 +17,11 @@ import { MinesFacade } from './mines.facade';
     <lab-list
       *ngIf="getMyActivities.isCompleted()"
       [items]="getMyActivities.result() ?? []"
+      [itemTemplate]="activityItem"
       caption="Published activities" />
+    <ng-template #activityItem let-activity>
+      <lab-activity [activity]="activity" />
+    </ng-template>
   `,
   styles: [],
   providers: [MinesFacade],

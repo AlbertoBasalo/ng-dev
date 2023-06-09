@@ -21,7 +21,7 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular
       <aside *ngIf="items.length === 0">🕳️ No data yet!</aside>
     </article>
     <ng-template #defaultItem let-item>
-      {{ item | json }}
+      <div name="item">{{ item | json }}</div>
     </ng-template>
   `,
   styles: [

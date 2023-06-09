@@ -28,6 +28,8 @@ ng g interceptor core/error
 
 ng g c routes/activities/mines --type=page
 ng g class routes/activities/mines --type=facade
+ng g c routes/activities/activity --type=item
+ng g p shared/truncate
 
 Standardize component types
 

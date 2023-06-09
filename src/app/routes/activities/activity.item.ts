@@ -10,10 +10,7 @@ import { PriceBlock } from 'src/app/shared/price.block';
   imports: [CommonModule, LinkBlock, PriceBlock, DateBlock],
   template: `
     <div name="activity-item" [id]="activity.slug" class="grid one-two">
-      <lab-link
-        name="title"
-        [routerLink]="['/activities', activity.slug]"
-        [caption]="activity.title" />
+      <lab-link name="title" [routerLink]="['/activities', activity.slug]" [caption]="activity.title" />
       <lab-price [price]="activity.price" [currency]="activity.currency" class="right-align" />
       <lab-date [date]="activity.date" class="right-align" />
     </div>

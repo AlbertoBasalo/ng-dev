@@ -26,6 +26,7 @@ export class GlobalStore {
   readonly isLogged = computed(() => this.#userToken().accessToken !== '');
   readonly apiToken = computed(() => this.#userToken().accessToken);
   readonly user = computed(() => this.#userToken().user);
+  readonly userId = computed(() => this.#userToken().user.id);
 
   constructor() {
     const userToken = localStorage.getItem('user-access-token');
