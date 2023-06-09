@@ -1,23 +1,55 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DataBlock } from 'src/app/shared/data.block';
 import { DateBlock } from 'src/app/shared/date.block';
 import { LinkBlock } from 'src/app/shared/link.block';
+import { LocationBlock } from 'src/app/shared/location.block';
 import { PriceBlock } from 'src/app/shared/price.block';
 
 @Component({
   selector: 'lab-activity',
   standalone: true,
-  imports: [CommonModule, LinkBlock, PriceBlock, DateBlock],
+  imports: [CommonModule, DataBlock, LinkBlock, PriceBlock, DateBlock, LocationBlock],
   template: `
-    <div name="activity-item" [id]="activity.slug" class="grid one-two">
-      <lab-link name="title" [routerLink]="['/activities', activity.slug]" [caption]="activity.title" />
-      <lab-price [price]="activity.price" [currency]="activity.currency" class="right-align" />
-      <lab-date [date]="activity.date" class="right-align" />
-    </div>
+    <details name="activity-item" [id]="activity.slug" class="grid two">
+      <summary>{{ activity.title }}</summary>
+      <article name="details">
+        <header>
+          <h5>
+            <span> For {{ activity.ageCategory }}</span>
+            <lab-price
+              [price]="activity.price"
+              [currency]="activity.currency"
+              class="right-align" />
+            <lab-date [date]="activity.date" class="right-align" />
+          </h5>
+          <lab-location
+            [location]="activity.location"
+            [country]="activity.country"
+            [countryCode]="activity.countryCode" />
+        </header>
+        <main>
+          <lab-data term="Maximum capacity" [data]="activity.capacity + ' places.'"></lab-data>
+          <lab-data term="Minimum quorum" [data]="activity.quorum + ' bookings.'"></lab-data>
+          <lab-data term="Current reservations" [data]="bookingsCount + ' bookings.'"></lab-data>
+          <progress [value]="getTempValue()" [max]="activity.capacity"></progress>
+        </main>
+        <footer class="grid three">
+          <button class="button primary">Publish Activity</button>
+          <button class="button secondary">Cancel Activity</button>
+          <button class="button contrast">Finished Activity</button>
+        </footer>
+      </article>
+    </details>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivityItem {
   @Input({ required: true }) activity: any;
+  @Input() bookingsCount: number = 0;
+
+  getTempValue(): number {
+    return Math.floor(Math.random() * this.activity.capacity);
+  }
 }
