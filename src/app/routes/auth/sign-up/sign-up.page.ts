@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
-import { CommandState } from 'src/app/core/command.state';
+import { CommandStore } from 'src/app/core/command.store';
 
 import { GlobalStore } from 'src/app/core/global.store';
 import {
@@ -31,7 +31,7 @@ export default class SignUpPage {
   #http = inject(HttpClient);
   #globalStore = inject(GlobalStore);
 
-  postRegister = new CommandState<UserToken>(DEFAULT_USER_TOKEN);
+  postRegister = new CommandStore<UserToken>(DEFAULT_USER_TOKEN);
 
   onSingUp(newCredentials: UserRegistration): void {
     const command$ = this.#http

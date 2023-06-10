@@ -31,6 +31,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorDialog {
+  // ToDo: receive an exception object instead of a message
   @Input() errorMessage = '';
   isOpen = signal(true);
   constructor() {

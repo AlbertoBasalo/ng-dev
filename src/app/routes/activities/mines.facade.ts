@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Activity, DEFAULT_ACTIVITY } from 'src/app/core/activity.interface';
-import { CommandState } from 'src/app/core/command.state';
+import { CommandStore } from 'src/app/core/command.store';
 import { GlobalStore } from 'src/app/core/global.store';
 
 @Injectable()
 export class MinesFacade {
   #http = inject(HttpClient);
   #globalStore = inject(GlobalStore);
-  getMyActivitiesState = new CommandState<Activity[]>([]);
-  putActivityState = new CommandState<Activity>(DEFAULT_ACTIVITY);
+  getMyActivitiesState = new CommandStore<Activity[]>([]);
+  putActivityState = new CommandStore<Activity>(DEFAULT_ACTIVITY);
 
   getMyActivities(): void {
     const userId = this.#globalStore.userId();
