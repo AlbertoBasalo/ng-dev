@@ -1,27 +1,11 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-
-export interface UserToken {
-  accessToken: string;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
-}
-const defaultToken: UserToken = {
-  accessToken: '',
-  user: {
-    id: '',
-    name: '',
-    email: '',
-  },
-};
+import { DEFAULT_USER_TOKEN, UserToken } from './user-token.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalStore {
   #router = inject(Router);
-  #userToken = signal<UserToken>(defaultToken);
+  #userToken = signal<UserToken>(DEFAULT_USER_TOKEN);
   // derived states
   readonly isLogged = computed(() => this.#userToken().accessToken !== '');
   readonly apiToken = computed(() => this.#userToken().accessToken);
@@ -42,7 +26,7 @@ export class GlobalStore {
     this.#router.navigate(['/']);
   }
   removeUserToken(): void {
-    this.#userToken.set(defaultToken);
+    this.#userToken.set(DEFAULT_USER_TOKEN);
     localStorage.removeItem('user-access-token');
     this.#router.navigate(['/auth', 'sign-up']);
   }

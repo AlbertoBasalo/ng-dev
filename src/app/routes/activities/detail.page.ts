@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  computed,
+  inject,
+} from '@angular/core';
 import { DataBlock } from 'src/app/shared/data.block';
 import { DateBlock } from 'src/app/shared/date.block';
 import { LocationBlock } from 'src/app/shared/location.block';
@@ -24,9 +31,16 @@ import { DetailFacade } from './detail.facade';
       </header>
       <main>
         <blockquote [innerHtml]="description()"></blockquote>
-        <lab-data term="Maximum capacity" [data]="activity.capacity + ' places.'"></lab-data>
-        <lab-data term="Minimum quorum" [data]="activity.quorum + ' bookings.'"></lab-data>
-        <p>Pricing <lab-price [price]="activity.price" [currency]="activity.currency" /></p>
+        <lab-data
+          term="Maximum capacity"
+          [data]="activity.capacity + ' places.'"></lab-data>
+        <lab-data
+          term="Minimum quorum"
+          [data]="activity.quorum + ' bookings.'"></lab-data>
+        <p
+          >Pricing
+          <lab-price [price]="activity.price" [currency]="activity.currency"
+        /></p>
         <p>Suitable for {{ activity.ageCategory }}</p>
       </main>
       <footer>
@@ -42,7 +56,9 @@ export default class DetailPage implements OnInit {
   @Input() slug: string | null = null;
   #detailFacade: DetailFacade = inject(DetailFacade);
   getActivity = this.#detailFacade.getActivityState;
-  description = computed(() => this.#detailFacade.getDescription(this.getActivity.result()));
+  description = computed(() =>
+    this.#detailFacade.getDescription(this.getActivity.result())
+  );
 
   ngOnInit(): void {
     if (this.slug) {

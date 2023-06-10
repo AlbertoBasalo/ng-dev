@@ -6,7 +6,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <span itemprop="priceCurrency" [attr.content]="currency" class="right-align">
+    <span
+      data-itemprop="priceCurrency"
+      [attr.content]="currency"
+      class="right-align">
       {{ price | currency : currency : 'symbol' : '1.0-0' }} 🪙
     </span>
   `,

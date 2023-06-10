@@ -4,7 +4,12 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
 import { CommandState } from 'src/app/core/command.state';
 
-import { GlobalStore, UserToken } from 'src/app/core/global.store';
+import { GlobalStore } from 'src/app/core/global.store';
+import {
+  DEFAULT_USER_TOKEN,
+  UserRegistration,
+  UserToken,
+} from 'src/app/core/user-token.interface';
 import { ErrorDialog } from 'src/app/shared/error.dialog';
 import { SignUpForm } from './sign-up.form';
 
@@ -14,7 +19,9 @@ import { SignUpForm } from './sign-up.form';
   imports: [CommonModule, SignUpForm, ErrorDialog],
   template: `
     <lab-sign-up-form (singUp)="onSingUp($event)" />
-    <lab-error *ngIf="postRegister.hasError()" [errorMessage]="postRegister.errorMessage()" />
+    <lab-error
+      *ngIf="postRegister.hasError()"
+      [errorMessage]="postRegister.errorMessage()" />
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,9 +31,9 @@ export default class SignUpPage {
   #http = inject(HttpClient);
   #globalStore = inject(GlobalStore);
 
-  postRegister = new CommandState<UserToken>();
+  postRegister = new CommandState<UserToken>(DEFAULT_USER_TOKEN);
 
-  onSingUp(newCredentials: object): void {
+  onSingUp(newCredentials: UserRegistration): void {
     const command$ = this.#http
       .post<UserToken>(this.#api, newCredentials)
       .pipe(tap((userToken) => this.#globalStore.setUserToken(userToken)));

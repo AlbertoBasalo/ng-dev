@@ -1,15 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  signal,
+} from '@angular/core';
 
 @Component({
   selector: 'lab-error',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <dialog id="error-dialog" [open]="open()">
+    <dialog id="error-dialog" [open]="isOpen()">
       <article>
         <header>
-          <a href="#close" aria-label="Close" class="close" (click)="open.set(false)"></a>
+          <a
+            href="#close"
+            aria-label="Close"
+            class="close"
+            (click)="isOpen.set(false)"></a>
           <h3>💣 Error</h3>
         </header>
         <p>
@@ -23,8 +32,8 @@ import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core
 })
 export class ErrorDialog {
   @Input() errorMessage = '';
-  open = signal(true);
+  isOpen = signal(true);
   constructor() {
-    setTimeout(() => this.open.set(false), 3000);
+    setTimeout(() => this.isOpen.set(false), 3000);
   }
 }

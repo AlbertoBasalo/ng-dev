@@ -1,7 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { getError, markError, mismatch, passwordValidations } from 'src/app/core/form.functions';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  getError,
+  markError,
+  mismatch,
+  passwordValidations,
+} from 'src/app/core/form.functions';
+import { UserRegistration } from 'src/app/core/user-token.interface';
 
 @Component({
   selector: 'lab-sign-up-form',
@@ -26,7 +42,12 @@ import { getError, markError, mismatch, passwordValidations } from 'src/app/core
         <sub *ngIf="markError('email')">
           <i>{{ getError('email') }}</i>
         </sub>
-        <input id="email" name="email" type="email" formControlName="email" [attr.aria-invalid]="markError('email')" />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          formControlName="email"
+          [attr.aria-invalid]="markError('email')" />
       </label>
       <section class="grid">
         <label for="password">
@@ -62,7 +83,12 @@ import { getError, markError, mismatch, passwordValidations } from 'src/app/core
           <button class="contrast outline" (click)="form.reset()">Reset</button>
         </section>
         <section>
-          <button type="submit" (click)="onSingUpClick()" [disabled]="form.invalid"> Sign up </button>
+          <button
+            type="submit"
+            (click)="onSingUpClick()"
+            [disabled]="form.invalid">
+            Sign up
+          </button>
         </section>
       </section>
     </form>
@@ -71,10 +97,13 @@ import { getError, markError, mismatch, passwordValidations } from 'src/app/core
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpForm {
-  @Output() singUp = new EventEmitter<object>();
+  @Output() singUp = new EventEmitter<UserRegistration>();
   form: FormGroup = new FormGroup(
     {
-      username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', passwordValidations),
       repeatPassword: new FormControl('', passwordValidations),
@@ -85,8 +114,8 @@ export class SignUpForm {
   );
 
   onSingUpClick(): void {
-    const { repeatPassword, ...newCredentials } = this.form.value;
-    this.singUp.emit(newCredentials);
+    const { repeatPassword, ...userRegistration } = this.form.value;
+    this.singUp.emit(userRegistration);
   }
 
   markError(controlName: string): boolean | null {

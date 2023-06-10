@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Activity, DEFAULT_ACTIVITY } from 'src/app/core/activity.interface';
 import { DateBlock } from 'src/app/shared/date.block';
 import { LinkBlock } from 'src/app/shared/link.block';
 import { PriceBlock } from 'src/app/shared/price.block';
@@ -14,7 +15,10 @@ import { PriceBlock } from 'src/app/shared/price.block';
         name="title"
         [routerLink]="['/activities', activity.slug]"
         [caption]="activity.title" />
-      <lab-price [price]="activity.price" [currency]="activity.currency" class="right-align" />
+      <lab-price
+        [price]="activity.price"
+        [currency]="activity.currency"
+        class="right-align" />
       <lab-date [date]="activity.date" class="right-align" />
     </div>
   `,
@@ -22,5 +26,5 @@ import { PriceBlock } from 'src/app/shared/price.block';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivityItem {
-  @Input({ required: true }) activity: any;
+  @Input({ required: true }) activity: Activity = DEFAULT_ACTIVITY;
 }

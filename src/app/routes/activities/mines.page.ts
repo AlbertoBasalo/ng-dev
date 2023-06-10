@@ -9,18 +9,28 @@ import { MinesFacade } from './mines.facade';
 @Component({
   selector: 'lab-mines',
   standalone: true,
-  imports: [CommonModule, ActivityItem, LoadingComponent, ErrorDialog, ListComponent],
+  imports: [
+    CommonModule,
+    ActivityItem,
+    LoadingComponent,
+    ErrorDialog,
+    ListComponent,
+  ],
   template: `
     My activities
     <lab-loading *ngIf="getMyActivities.isWorking()" />
-    <lab-error *ngIf="getMyActivities.hasError()" [errorMessage]="getMyActivities.errorMessage()" />
+    <lab-error
+      *ngIf="getMyActivities.hasError()"
+      [errorMessage]="getMyActivities.errorMessage()" />
     <lab-list
       *ngIf="getMyActivities.isCompleted()"
-      [items]="getMyActivities.result() ?? []"
+      [items]="getMyActivities.result()"
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>
-      <lab-activity [activity]="activity" (changeState)="onChangeState(activity, $event)" />
+      <lab-activity
+        [activity]="activity"
+        (changeState)="onChangeState(activity, $event)" />
     </ng-template>
   `,
   styles: [],

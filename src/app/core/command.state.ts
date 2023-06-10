@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 export class CommandState<T> {
   readonly isWorking = signal(false);
-  readonly result = signal<T | null>(null);
+  readonly result = signal<T>(this.defaultValue);
   readonly error = signal<object | null>(null);
   // derived states
   readonly hasError = computed(() => this.error() !== null);
@@ -14,7 +14,6 @@ export class CommandState<T> {
   });
   readonly hasContent = computed(() => {
     const result = this.result();
-    if (!result) return false;
     if (Array.isArray(result)) return result.length > 0;
     return true;
   });
@@ -23,6 +22,8 @@ export class CommandState<T> {
     if (!e) return '';
     return e instanceof Error ? e.message : JSON.stringify(e);
   });
+
+  constructor(private readonly defaultValue: T) {}
 
   execute(command$: Observable<T>) {
     this.start();
@@ -35,13 +36,13 @@ export class CommandState<T> {
   private start(): void {
     // console.log('start');
     this.isWorking.set(true);
-    this.result.set(null);
+    this.result.set(this.defaultValue);
     this.error.set(null);
   }
   private fail(error: object): void {
     // console.log('fail');
     this.isWorking.set(false);
-    this.result.set(null);
+    this.result.set(this.defaultValue);
     this.error.set(error);
   }
   private succeed(result: T): void {

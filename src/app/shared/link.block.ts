@@ -7,7 +7,9 @@ import { TruncatePipe } from './truncate.pipe';
   selector: 'lab-link',
   standalone: true,
   imports: [CommonModule, RouterModule, TruncatePipe],
-  template: ` <a [routerLink]="routerLink" [title]="caption"> {{ icon }} {{ caption | truncate }} </a> `,
+  template: `
+    <a [routerLink]="routerLink" [title]="caption"> {{ icon }} {{ caption | truncate }} </a>
+  `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

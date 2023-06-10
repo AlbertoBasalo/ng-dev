@@ -8,13 +8,21 @@ import { HomeFacade } from './home.facade';
 @Component({
   selector: 'lab-home',
   standalone: true,
-  imports: [CommonModule, LoadingComponent, ErrorDialog, ListComponent, ActivityItem],
+  imports: [
+    CommonModule,
+    LoadingComponent,
+    ErrorDialog,
+    ListComponent,
+    ActivityItem,
+  ],
   template: `
     <lab-loading *ngIf="getActivities.isWorking()" />
-    <lab-error *ngIf="getActivities.hasError()" [errorMessage]="getActivities.errorMessage()" />
+    <lab-error
+      *ngIf="getActivities.hasError()"
+      [errorMessage]="getActivities.errorMessage()" />
     <lab-list
       *ngIf="getActivities.isCompleted()"
-      [items]="getActivities.result() ?? []"
+      [items]="getActivities.result()"
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>

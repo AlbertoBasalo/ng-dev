@@ -5,10 +5,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'lab-date',
   standalone: true,
   imports: [CommonModule],
-  template: `<time [attr.datetime]="date" [attr.data-tooltip]="date"> 📅 {{ date | date : 'dd-MMM-yyyy' }} </time>`,
+  template: ` <time [attr.datetime]="date" [attr.data-tooltip]="date">
+    📅 {{ date | date : 'dd-MMM-yyyy' }}
+  </time>`,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateBlock {
-  @Input() date: Date = new Date();
+  @Input() date: Date | string = new Date();
 }
