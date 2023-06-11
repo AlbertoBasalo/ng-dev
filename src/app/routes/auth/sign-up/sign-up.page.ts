@@ -19,9 +19,7 @@ import { SignUpForm } from './sign-up.form';
   imports: [CommonModule, SignUpForm, ErrorDialog],
   template: `
     <lab-sign-up-form (singUp)="onSingUp($event)" />
-    <lab-error
-      *ngIf="postRegister.hasError()"
-      [errorMessage]="postRegister.errorMessage()" />
+    <lab-error *ngIf="postRegister.hasError()" [error]="postRegister.error()" />
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

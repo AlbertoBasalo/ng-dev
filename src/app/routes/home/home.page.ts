@@ -19,7 +19,7 @@ import { HomeFacade } from './home.facade';
     <lab-loading *ngIf="getActivities.isWorking()" />
     <lab-error
       *ngIf="getActivities.hasError()"
-      [errorMessage]="getActivities.errorMessage()" />
+      [error]="getActivities.error()" />
     <lab-list
       *ngIf="getActivities.isCompleted()"
       [items]="getActivities.result()"

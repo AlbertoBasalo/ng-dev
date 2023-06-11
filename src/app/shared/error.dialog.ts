@@ -19,10 +19,10 @@ import {
             aria-label="Close"
             class="close"
             (click)="isOpen.set(false)"></a>
-          <h3>💣 Error</h3>
+          <h4>{{ error?.icon }} {{ error?.name }}</h4>
         </header>
         <p>
-          {{ errorMessage }}
+          {{ error?.message }}
         </p>
       </article>
     </dialog>
@@ -31,8 +31,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorDialog {
-  // ToDo: receive an exception object instead of a message
-  @Input() errorMessage = '';
+  @Input() error: any | null = null;
+
   isOpen = signal(true);
   constructor() {
     setTimeout(() => this.isOpen.set(false), 3000);

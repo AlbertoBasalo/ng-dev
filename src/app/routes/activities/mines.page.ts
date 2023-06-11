@@ -21,7 +21,7 @@ import { MinesFacade } from './mines.facade';
     <lab-loading *ngIf="getMyActivities.isWorking()" />
     <lab-error
       *ngIf="getMyActivities.hasError()"
-      [errorMessage]="getMyActivities.errorMessage()" />
+      [error]="getMyActivities.error()" />
     <lab-list
       *ngIf="getMyActivities.isCompleted()"
       [items]="getMyActivities.result()"
