@@ -7,18 +7,18 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const globalStore = inject(GlobalStore);
   return next(req).pipe(
     catchError((err) => {
-      let errorKind = getException(err);
-      if (errorKind.kind === 'Auth Error') {
+      let exception = getException(err);
+      if (exception.name === 'Auth Error') {
         globalStore.removeUserToken();
       }
       console.error(err);
       return throwError(
         () =>
-          new Exception(
-            errorKind.code,
-            errorKind.message,
-            errorKind.kind,
-            errorKind.icon
+          new HandledError(
+            exception.message,
+            exception.name,
+            exception.code,
+            exception.icon
           )
       );
     })
@@ -26,32 +26,35 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 // a lookup table for common HTTP status codes
-const EXCEPTIONS: Exception[] = [
-  { code: 400, message: 'Bad Request', kind: 'Client Error', icon: '🤔' },
-  { code: 401, message: 'Unauthorized', kind: 'Auth Error', icon: '🔒' },
-  { code: 403, message: 'Forbidden', kind: 'Auth Error', icon: '🔒' },
-  { code: 404, message: 'Not Found', kind: 'Client Error', icon: '🔍' },
+const EXCEPTIONS: HandledError[] = [
+  { code: 400, message: 'Bad Request', name: 'Client Error', icon: '🤔' },
+  { code: 401, message: 'Unauthorized', name: 'Auth Error', icon: '🔒' },
+  { code: 403, message: 'Forbidden', name: 'Auth Error', icon: '🔒' },
+  { code: 404, message: 'Not Found', name: 'Client Error', icon: '🔍' },
   {
     code: 500,
     message: 'Internal Server Error',
-    kind: 'Server Error',
+    name: 'Server Error',
     icon: '🤖',
   },
 ];
-const UNKNOWN_ERROR: Exception = {
-  code: 0,
+const UNKNOWN_ERROR: HandledError = {
+  name: 'Application Error',
   message: 'Unknown Error',
-  kind: 'Application Error',
+  code: 0,
   icon: '🤷‍♀️',
 };
 
-export class Exception {
+export class HandledError extends Error {
   constructor(
+    public override readonly message: string = 'Unknown Error',
+    public override readonly name: string = 'Application Error',
     public readonly code: number = 0,
-    public readonly message: string = 'Unknown Error',
-    public readonly kind: string = 'Application Error',
     public readonly icon: string = '🤷‍♀️'
-  ) {}
+  ) {
+    super(message);
+    super.name = name;
+  }
 }
 
 function getException(err: any) {
