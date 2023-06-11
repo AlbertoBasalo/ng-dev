@@ -31,6 +31,8 @@ ng g class routes/activities/mines --type=facade
 ng g c routes/activities/activity --type=item
 ng g p shared/truncate
 
+// To Do: Move Error Dialog to main layout
+
 Standardize component types
 
 - [x] block
