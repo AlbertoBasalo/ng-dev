@@ -18,13 +18,13 @@ import { MinesFacade } from './mines.facade';
   ],
   template: `
     My activities
-    <lab-loading *ngIf="getMyActivities.isWorking()" />
+    <lab-loading *ngIf="getMyActivitiesStore.isWorking()" />
     <lab-error
-      *ngIf="getMyActivities.hasError()"
-      [error]="getMyActivities.error()" />
+      *ngIf="getMyActivitiesStore.hasError()"
+      [error]="getMyActivitiesStore.error()" />
     <lab-list
-      *ngIf="getMyActivities.isCompleted()"
-      [items]="getMyActivities.result()"
+      *ngIf="getMyActivitiesStore.isCompleted()"
+      [items]="getMyActivitiesStore.result()"
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>
@@ -39,7 +39,7 @@ import { MinesFacade } from './mines.facade';
 })
 export default class MinesPage {
   #minesFacade: MinesFacade = inject(MinesFacade);
-  getMyActivities = this.#minesFacade.getMyActivitiesState;
+  getMyActivitiesStore = this.#minesFacade.getMyActivitiesStore;
   constructor() {
     this.#minesFacade.getMyActivities();
   }

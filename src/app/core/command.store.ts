@@ -14,11 +14,15 @@ export class CommandStore<T> {
   readonly errorMessage = computed(() => this.getErrorMessage(this.#error()));
   readonly hasError = computed(() => this.#error() !== null);
 
-  constructor(private readonly defaultValue: T) {}
+  private command$!: Observable<T>;
+  constructor(private readonly defaultValue: T, command$?: Observable<T>) {
+    if (command$) this.command$ = command$;
+  }
 
-  execute(command$: Observable<T>) {
+  execute(command$?: Observable<T>) {
+    const theCommand$ = command$ || this.command$;
     this.onStart();
-    this.#subscription = command$.subscribe({
+    this.#subscription = theCommand$.subscribe({
       next: (body) => this.onSucceed(body),
       error: (e) => this.onFail(e),
     });

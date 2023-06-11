@@ -7,15 +7,15 @@ import { CommandStore } from 'src/app/core/command.store';
 @Injectable()
 export class DetailFacade {
   #http = inject(HttpClient);
-  getActivityState = new CommandStore<Activity>(DEFAULT_ACTIVITY);
+  getActivityStore = new CommandStore<Activity>(DEFAULT_ACTIVITY);
 
   getActivity(slug: string): void {
-    const api = 'http://localhost:3000/activities?slug=';
-    const url = `${api}${slug}`;
+    const api = 'http://localhost:3000/activities';
+    const url = `${api}?slug=${slug}`;
     const command$ = this.#http
       .get<Activity[]>(url)
       .pipe(map((list) => list[0]));
-    this.getActivityState.execute(command$);
+    this.getActivityStore.execute(command$);
   }
   getDescription(activity: Activity) {
     if (!activity) return '';

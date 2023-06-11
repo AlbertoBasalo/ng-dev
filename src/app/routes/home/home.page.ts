@@ -16,13 +16,13 @@ import { HomeFacade } from './home.facade';
     ActivityItem,
   ],
   template: `
-    <lab-loading *ngIf="getActivities.isWorking()" />
+    <lab-loading *ngIf="getActivitiesStore.isWorking()" />
     <lab-error
-      *ngIf="getActivities.hasError()"
-      [error]="getActivities.error()" />
+      *ngIf="getActivitiesStore.hasError()"
+      [error]="getActivitiesStore.error()" />
     <lab-list
-      *ngIf="getActivities.isCompleted()"
-      [items]="getActivities.result()"
+      *ngIf="getActivitiesStore.isCompleted()"
+      [items]="getActivitiesStore.result()"
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>
@@ -35,7 +35,7 @@ import { HomeFacade } from './home.facade';
 })
 export class HomePage {
   #homeFacade: HomeFacade = inject(HomeFacade);
-  getActivities = this.#homeFacade.getActivitiesState;
+  getActivitiesStore = this.#homeFacade.getActivitiesStore;
 
   constructor() {
     this.#homeFacade.getActivities();

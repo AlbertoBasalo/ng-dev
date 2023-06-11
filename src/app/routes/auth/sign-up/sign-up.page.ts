@@ -19,22 +19,24 @@ import { SignUpForm } from './sign-up.form';
   imports: [CommonModule, SignUpForm, ErrorDialog],
   template: `
     <lab-sign-up-form (singUp)="onSingUp($event)" />
-    <lab-error *ngIf="postRegister.hasError()" [error]="postRegister.error()" />
+    <lab-error
+      *ngIf="postRegisterStore.hasError()"
+      [error]="postRegisterStore.error()" />
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SignUpPage {
-  #api = 'http://localhost:3000/register';
   #http = inject(HttpClient);
   #globalStore = inject(GlobalStore);
 
-  postRegister = new CommandStore<UserToken>(DEFAULT_USER_TOKEN);
+  postRegisterStore = new CommandStore<UserToken>(DEFAULT_USER_TOKEN);
 
   onSingUp(newCredentials: UserRegistration): void {
+    const api = 'http://localhost:3000/register';
     const command$ = this.#http
-      .post<UserToken>(this.#api, newCredentials)
+      .post<UserToken>(api, newCredentials)
       .pipe(tap((userToken) => this.#globalStore.setUserToken(userToken)));
-    this.postRegister.execute(command$);
+    this.postRegisterStore.execute(command$);
   }
 }

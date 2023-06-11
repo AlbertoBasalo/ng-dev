@@ -18,7 +18,7 @@ import { DetailFacade } from './detail.facade';
   standalone: true,
   imports: [CommonModule, DateBlock, PriceBlock, DataBlock, LocationBlock],
   template: `
-    <article *ngIf="getActivity.result() as activity" [attr.name]="slug">
+    <article *ngIf="getActivityStore.result() as activity" [attr.name]="slug">
       <header class="headings">
         <h1>{{ activity.title }}</h1>
         <p>
@@ -55,9 +55,9 @@ import { DetailFacade } from './detail.facade';
 export default class DetailPage implements OnInit {
   @Input() slug: string | null = null;
   #detailFacade: DetailFacade = inject(DetailFacade);
-  getActivity = this.#detailFacade.getActivityState;
+  getActivityStore = this.#detailFacade.getActivityStore;
   description = computed(() =>
-    this.#detailFacade.getDescription(this.getActivity.result())
+    this.#detailFacade.getDescription(this.getActivityStore.result())
   );
 
   ngOnInit(): void {

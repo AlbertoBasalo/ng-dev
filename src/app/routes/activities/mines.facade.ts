@@ -8,20 +8,20 @@ import { GlobalStore } from 'src/app/core/global.store';
 export class MinesFacade {
   #http = inject(HttpClient);
   #globalStore = inject(GlobalStore);
-  getMyActivitiesState = new CommandStore<Activity[]>([]);
-  putActivityState = new CommandStore<Activity>(DEFAULT_ACTIVITY);
+  #api = 'http://localhost:3000/activities';
+  getMyActivitiesStore = new CommandStore<Activity[]>([]);
+  putActivityStore = new CommandStore<Activity>(DEFAULT_ACTIVITY);
 
   getMyActivities(): void {
     const userId = this.#globalStore.userId();
-    const api = 'http://localhost:3000/activities/?userId=';
-    const url = `${api}${userId}`;
+    const url = `${this.#api}/?userId=${userId}`;
     const command$ = this.#http.get<Activity[]>(url);
-    this.getMyActivitiesState.execute(command$);
+    this.getMyActivitiesStore.execute(command$);
   }
 
   putActivity(activity: Activity): void {
-    const url = `http://localhost:3000/activities/${activity.id}`;
+    const url = `${this.#api}/${activity.id}`;
     const command$ = this.#http.put<Activity>(url, activity);
-    this.putActivityState.execute(command$);
+    this.putActivityStore.execute(command$);
   }
 }
