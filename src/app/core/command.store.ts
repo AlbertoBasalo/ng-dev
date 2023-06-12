@@ -10,9 +10,9 @@ export class CommandStore<T> {
   readonly isWorking = this.#isWorking.asReadonly();
   readonly result = this.#result.asReadonly();
   readonly error = this.#error.asReadonly();
-  readonly isCompleted = computed(() => !this.#isWorking() && !this.#error());
-  readonly errorMessage = computed(() => this.getErrorMessage(this.#error()));
+  readonly isCompleted = computed(() => this.result() !== this.defaultValue);
   readonly hasError = computed(() => this.#error() !== null);
+  readonly errorMessage = computed(() => this.getErrorMessage(this.#error()));
 
   constructor(private readonly defaultValue: T) {}
 

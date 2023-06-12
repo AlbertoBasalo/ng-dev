@@ -1,17 +1,20 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { HandledError } from './errors/handled-error.class';
 import { DEFAULT_USER_TOKEN, UserToken } from './user-token.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalStore {
   readonly #router = inject(Router);
-  readonly #userToken = signal<UserToken>(DEFAULT_USER_TOKEN);
   readonly #localStorage = new LocalStorage('user-access-token');
+  readonly #userToken = signal<UserToken>(DEFAULT_USER_TOKEN);
+  readonly #handledError = signal<HandledError | null>(null);
 
   readonly isLogged = computed(() => this.#userToken().accessToken !== '');
   readonly apiToken = computed(() => this.#userToken().accessToken);
   readonly user = computed(() => this.#userToken().user);
   readonly userId = computed(() => this.#userToken().user.id);
+  readonly handledError = this.#handledError.asReadonly();
 
   constructor() {
     const userToken = this.#localStorage.get(DEFAULT_USER_TOKEN);
@@ -27,6 +30,9 @@ export class GlobalStore {
     this.#userToken.set(DEFAULT_USER_TOKEN);
     this.#localStorage.remove();
     this.#router.navigate(['/auth', 'sign-up']);
+  }
+  handleError(error: HandledError): void {
+    this.#handledError.set(error);
   }
 }
 

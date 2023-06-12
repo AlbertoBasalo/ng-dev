@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { GlobalStore } from './global.store';
+import { GlobalStore } from '../global.store';
 import { getHandledError } from './handled-error.class';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
@@ -12,6 +12,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.name === 'Auth Error') {
         globalStore.removeUserToken();
       }
+      globalStore.handleError(error);
       return throwError(() => error);
     })
   );

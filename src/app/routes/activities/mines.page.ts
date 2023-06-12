@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ErrorDialog } from 'src/app/shared/error.dialog';
 import { ListComponent } from 'src/app/shared/list.component';
 import { LoadingComponent } from 'src/app/shared/loading.component';
 import { ActivityItem } from './activity.item';
@@ -9,19 +8,10 @@ import { MinesFacade } from './mines.facade';
 @Component({
   selector: 'lab-mines',
   standalone: true,
-  imports: [
-    CommonModule,
-    ActivityItem,
-    LoadingComponent,
-    ErrorDialog,
-    ListComponent,
-  ],
+  imports: [CommonModule, ActivityItem, LoadingComponent, ListComponent],
   template: `
     My activities
     <lab-loading *ngIf="getMyActivitiesStore.isWorking()" />
-    <lab-error
-      *ngIf="getMyActivitiesStore.hasError()"
-      [error]="getMyActivitiesStore.error()" />
     <lab-list
       *ngIf="getMyActivitiesStore.isCompleted()"
       [items]="getMyActivitiesStore.result()"
