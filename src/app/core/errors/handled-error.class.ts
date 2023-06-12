@@ -51,8 +51,16 @@ export class HandledError implements HandledErrorData {
   get icon(): string {
     return this.getErrorData().icon;
   }
-  get stack(): string | undefined {
-    return this.error.stack;
+  get stack(): string {
+    let stack = '';
+    if (this.error.stack) {
+      stack = '';
+      const stackMethods = this.error.stack.split('\n');
+      stackMethods.forEach((method: string) => {
+        stack += method.trim() + '\n';
+      });
+    }
+    return stack;
   }
   constructor(private readonly error: any) {}
 
