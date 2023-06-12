@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
 import { CommandStore } from 'src/app/core/command.store';
 
-import { ErrorDialog } from 'src/app/core/errors/error.dialog';
 import { GlobalStore } from 'src/app/core/global.store';
 import {
   DEFAULT_USER_TOKEN,
@@ -16,7 +15,7 @@ import { SignUpForm } from './sign-up.form';
 @Component({
   selector: 'lab-sign-up',
   standalone: true,
-  imports: [CommonModule, SignUpForm, ErrorDialog],
+  imports: [CommonModule, SignUpForm],
   template: ` <lab-sign-up-form (singUp)="onSingUp($event)" /> `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
