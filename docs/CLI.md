@@ -3,7 +3,7 @@ ng g c layout/footer
 ng g c routes/home --type=page
 ng g c routes/auth/sign-up --type=page
 ng g c shared/loading
-ng g c shared/error --type=dialog
+
 ng g c shared/list
 ng g class routes/home/home --type=facade
 ng g class core/command --type=state
@@ -24,14 +24,16 @@ ng g c routes/auth/sign-up/sign-up --type=form
 ng g class core/global --type=store
 
 ng g interceptor core/auth
-ng g interceptor core/error
+
+ng g interceptor core/errors/error
+ng g class core/errors/handled-error
+ng g service core/errors/error-handler
+ng g c core/errors/error --type=dialog
 
 ng g c routes/activities/mines --type=page
 ng g class routes/activities/mines --type=facade
 ng g c routes/activities/activity --type=item
 ng g p shared/truncate
-
-// To Do: Move Error Dialog to main layout
 
 Standardize component types
 
@@ -39,7 +41,7 @@ Standardize component types
 - [ ] card
 - [x] dialog
 - [ ] form
-- [x] item
+- [x] item ❓
 - [ ] list
 - [x] page
 - [ ] widget
@@ -47,5 +49,4 @@ Standardize component types
 Standardize service/class types
 
 - [x] facade
-- [x] state
-- [ ] store
+- [x] store
