@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  inject,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { GlobalStore } from '../core/global.store';
 
@@ -23,7 +28,10 @@ import { GlobalStore } from '../core/global.store';
         </ul>
         <ul *ngIf="isLogged()" id="user-menu">
           <li [routerLink]="['activities', 'mines']">
-            <a>⏳ My activities</a>
+            <a>➡️ My activities</a>
+          </li>
+          <li [routerLink]="['activities', 'new']">
+            <a>➡️ Create new</a>
           </li>
           <li>
             <a>👤 {{ user().name }}</a>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ListComponent } from 'src/app/shared/list.component';
 import { LoadingComponent } from 'src/app/shared/loading.component';
 import { ActivityItem } from './activity.item';
@@ -8,7 +9,13 @@ import { MyActivitiesFacade } from './my-activities.facade';
 @Component({
   selector: 'lab-my-activities',
   standalone: true,
-  imports: [CommonModule, ActivityItem, LoadingComponent, ListComponent],
+  imports: [
+    CommonModule,
+    ActivityItem,
+    LoadingComponent,
+    ListComponent,
+    RouterLink,
+  ],
   template: `
     My activities
     <lab-loading *ngIf="getMyActivitiesStore.isWorking()" />
@@ -22,6 +29,7 @@ import { MyActivitiesFacade } from './my-activities.facade';
         [activity]="activity"
         (changeState)="onChangeState(activity, $event)" />
     </ng-template>
+    <a role="button" routerLink="/activities/new">Create a new Activity</a>
   `,
   styles: [],
   providers: [MyActivitiesFacade],
