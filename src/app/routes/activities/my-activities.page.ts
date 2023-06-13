@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ListComponent } from 'src/app/shared/list.component';
 import { LoadingComponent } from 'src/app/shared/loading.component';
 import { ActivityItem } from './activity.item';
-import { MinesFacade } from './mines.facade';
+import { MyActivitiesFacade } from './my-activities.facade';
 
 @Component({
-  selector: 'lab-mines',
+  selector: 'lab-my-activities',
   standalone: true,
   imports: [CommonModule, ActivityItem, LoadingComponent, ListComponent],
   template: `
@@ -24,17 +24,17 @@ import { MinesFacade } from './mines.facade';
     </ng-template>
   `,
   styles: [],
-  providers: [MinesFacade],
+  providers: [MyActivitiesFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class MinesPage {
-  #minesFacade: MinesFacade = inject(MinesFacade);
-  getMyActivitiesStore = this.#minesFacade.getMyActivitiesStore;
+export default class MyActivitiesPage {
+  #myActivitiesFacade: MyActivitiesFacade = inject(MyActivitiesFacade);
+  getMyActivitiesStore = this.#myActivitiesFacade.getMyActivitiesStore;
   constructor() {
-    this.#minesFacade.getMyActivities();
+    this.#myActivitiesFacade.getMyActivities();
   }
   onChangeState(activity: any, state: string) {
     activity.state = state;
-    this.#minesFacade.putActivity(activity);
+    this.#myActivitiesFacade.putActivity(activity);
   }
 }

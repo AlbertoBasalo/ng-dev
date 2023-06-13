@@ -5,7 +5,7 @@ import { CommandStore } from 'src/app/core/command.store';
 import { GlobalStore } from 'src/app/core/global.store';
 
 @Injectable()
-export class MinesFacade {
+export class MyActivitiesFacade {
   #http = inject(HttpClient);
   #globalStore = inject(GlobalStore);
   #api = 'http://localhost:3000/activities';

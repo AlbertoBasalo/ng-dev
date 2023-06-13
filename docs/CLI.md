@@ -30,8 +30,14 @@ ng g class core/errors/handled-error
 ng g service core/errors/error-handler
 ng g c core/errors/error --type=dialog
 
-ng g c routes/activities/mines --type=page
-ng g class routes/activities/mines --type=facade
+// view my activities
+ng g c routes/activities/my-activities --type=page
+ng g class routes/activities/my-activities --type=facade
+// create new activity
+ng g c routes/activities/new-activity --type=page
+ng g class routes/activities/new-activity --type=facade
+ng g c routes/activities/new-activity --type=form
+
 ng g c routes/activities/activity --type=item
 ng g p shared/truncate
 

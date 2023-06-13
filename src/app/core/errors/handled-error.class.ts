@@ -39,22 +39,23 @@ export class HandledError implements HandledErrorData {
       icon: '🤖',
     },
   ];
-  get message(): string {
-    return this.getErrorData().message;
+  readonly message: string = '';
+  readonly name: string = '';
+  readonly code: number = 0;
+  readonly icon: string = '';
+  readonly stack: string = '';
+  constructor(private readonly error: any) {
+    const errorData = this.getErrorData();
+    this.message = errorData.message;
+    this.name = errorData.name;
+    this.code = errorData.code;
+    this.icon = errorData.icon;
+    this.stack = this.getStack();
   }
-  get name(): string {
-    return this.getErrorData().name;
-  }
-  get code(): number {
-    return this.getErrorData().code;
-  }
-  get icon(): string {
-    return this.getErrorData().icon;
-  }
-  get stack(): string {
+
+  private getStack() {
     let stack = '';
     if (this.error.stack) {
-      stack = '';
       const stackMethods = this.error.stack.split('\n');
       stackMethods.forEach((method: string) => {
         stack += method.trim() + '\n';
@@ -62,9 +63,8 @@ export class HandledError implements HandledErrorData {
     }
     return stack;
   }
-  constructor(private readonly error: any) {}
 
-  private getErrorData() {
+  private getErrorData(): HandledErrorData {
     const defaultError = {
       message: this.error.message,
       name: 'App Error',

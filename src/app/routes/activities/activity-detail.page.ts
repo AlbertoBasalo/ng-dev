@@ -11,10 +11,10 @@ import { DataBlock } from 'src/app/shared/data.block';
 import { DateBlock } from 'src/app/shared/date.block';
 import { LocationBlock } from 'src/app/shared/location.block';
 import { PriceBlock } from 'src/app/shared/price.block';
-import { DetailFacade } from './detail.facade';
+import { ActivityDetailFacade } from './activity-detail.facade';
 
 @Component({
-  selector: 'lab-detail',
+  selector: 'lab-activity-detail',
   standalone: true,
   imports: [CommonModule, DateBlock, PriceBlock, DataBlock, LocationBlock],
   template: `
@@ -49,20 +49,20 @@ import { DetailFacade } from './detail.facade';
     </article>
   `,
   styles: [],
-  providers: [DetailFacade],
+  providers: [ActivityDetailFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class DetailPage implements OnInit {
+export default class ActivityDetailPage implements OnInit {
   @Input() slug: string | null = null;
-  #detailFacade: DetailFacade = inject(DetailFacade);
-  getActivityStore = this.#detailFacade.getActivityStore;
+  #activityDetailFacade: ActivityDetailFacade = inject(ActivityDetailFacade);
+  getActivityStore = this.#activityDetailFacade.getActivityStore;
   description = computed(() =>
-    this.#detailFacade.getDescription(this.getActivityStore.result())
+    this.#activityDetailFacade.getDescription(this.getActivityStore.result())
   );
 
   ngOnInit(): void {
     if (this.slug) {
-      this.#detailFacade.getActivity(this.slug);
+      this.#activityDetailFacade.getActivity(this.slug);
     }
   }
 }

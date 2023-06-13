@@ -12,11 +12,15 @@ export const routes: Routes = [
   },
   {
     path: 'activities/mines',
-    loadComponent: () => import('./routes/activities/mines.page'),
+    loadComponent: () => import('./routes/activities/my-activities.page'),
+  },
+  {
+    path: 'activities/new',
+    loadComponent: () => import('./routes/activities/new-activity.page'),
   },
   {
     path: 'activities/:slug',
-    loadComponent: () => import('./routes/activities/detail.page'),
+    loadComponent: () => import('./routes/activities/activity-detail.page'),
   },
   {
     path: '**',

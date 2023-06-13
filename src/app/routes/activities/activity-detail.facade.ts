@@ -5,7 +5,7 @@ import { map } from 'rxjs';
 import { Activity, DEFAULT_ACTIVITY } from 'src/app/core/activity.interface';
 import { CommandStore } from 'src/app/core/command.store';
 @Injectable()
-export class DetailFacade {
+export class ActivityDetailFacade {
   #http = inject(HttpClient);
   getActivityStore = new CommandStore<Activity>(DEFAULT_ACTIVITY);
 
