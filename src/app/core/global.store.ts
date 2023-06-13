@@ -34,7 +34,7 @@ export class GlobalStore {
   handleError(error: HandledError): void {
     this.#handledError.set(error);
     // To do : move to an instrumentation subscriber
-    console.log(`${error.icon} ${error.name}: ${error.message}`);
+    console.warn(`${error.icon} ${error.name}: ${error.message}`);
     if (error.stack) console.log(error.stack);
   }
 }

@@ -26,13 +26,22 @@ export function markError(
   controlName: string
 ): boolean | null {
   const control = form.get(controlName);
+  return markControlError(control);
+}
+
+export function markControlError(
+  control: AbstractControl | null
+): boolean | null {
   if (!control) return null;
   // if (!(control.touched || control.dirty)) return null;
   return control.invalid;
 }
 
 export function getError(form: FormGroup, controlName: string): string {
-  const control = form.get(controlName);
+  return getControlError(form.get(controlName));
+}
+
+export function getControlError(control: AbstractControl | null): string {
   if (!control) return '';
   if (!(control.touched || control.dirty)) return '';
   return JSON.stringify(control.errors);

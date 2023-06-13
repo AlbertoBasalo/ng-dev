@@ -13,11 +13,12 @@ import {
 } from '@angular/forms';
 import { Activity } from 'src/app/core/activity.interface';
 import { getError, markError } from 'src/app/core/form.functions';
+import { ControlBlock } from 'src/app/shared/control.block';
 
 @Component({
   selector: 'lab-new-activity-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ControlBlock],
   template: `
     <form [formGroup]="form">
       <fieldset>
@@ -38,12 +39,12 @@ import { getError, markError } from 'src/app/core/form.functions';
           <sub *ngIf="markError('description')">
             <i>{{ getError('description') }}</i>
           </sub>
-          <input
+          <textarea
             id="description"
             name="description"
-            type="text"
             formControlName="description"
-            [attr.aria-invalid]="markError('description')" />
+            [attr.aria-invalid]="markError('description')">
+          </textarea>
         </label>
         <section class="grid">
           <label for="location">
@@ -159,7 +160,9 @@ import { getError, markError } from 'src/app/core/form.functions';
           </label>
         </section>
       </fieldset>
-      <button type="submit" [disabled]="!form.valid">Create</button>
+      <button type="submit" [disabled]="!form.valid" (click)="onCreateClick()"
+        >Create</button
+      >
     </form>
   `,
   styles: [],
@@ -167,14 +170,15 @@ import { getError, markError } from 'src/app/core/form.functions';
 })
 export class NewActivityForm {
   @Output() create = new EventEmitter<Partial<Activity>>();
+  #today = new Date().toISOString().substring(0, 10);
 
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
     location: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    countryCode: new FormControl('', [Validators.required]),
-    date: new FormControl('', [Validators.required]),
+    country: new FormControl(''),
+    countryCode: new FormControl(''),
+    date: new FormControl(this.#today, [Validators.required]),
     price: new FormControl(0, [Validators.required]),
     currency: new FormControl('EUR', [Validators.required]),
     capacity: new FormControl(10, [Validators.required]),
@@ -183,6 +187,7 @@ export class NewActivityForm {
   });
 
   onCreateClick() {
+    console.log(this.form.value);
     if (this.form.valid) {
       this.create.emit(this.form.value);
     }
