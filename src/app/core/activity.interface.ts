@@ -1,5 +1,5 @@
 export interface Activity {
-  id: number;
+  id: number | string;
   title: string;
   slug: string;
   location: string;
@@ -13,7 +13,7 @@ export interface Activity {
   quorum: number;
   ageCategory: AgeCategory;
   state: ActivityState;
-  userId: number;
+  userId: number | string;
 }
 
 export const DEFAULT_ACTIVITY: Activity = {

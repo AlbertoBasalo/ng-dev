@@ -169,7 +169,9 @@ import { ControlBlock } from 'src/app/shared/control.block';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewActivityForm {
-  @Output() create = new EventEmitter<Partial<Activity>>();
+  @Output() create = new EventEmitter<
+    Omit<Activity, 'id' | 'slug' | 'userId' | 'state'>
+  >();
   #today = new Date().toISOString().substring(0, 10);
 
   form: FormGroup = new FormGroup({

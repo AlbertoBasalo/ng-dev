@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Activity } from 'src/app/core/activity.interface';
+import { NewActivityFacade } from './new-activity.facade';
 import { NewActivityForm } from './new-activity.form';
+
+type ActivityForm = Omit<Activity, 'id' | 'slug' | 'userId' | 'state'>;
 
 @Component({
   selector: 'lab-new-activity',
@@ -9,16 +12,13 @@ import { NewActivityForm } from './new-activity.form';
   imports: [CommonModule, NewActivityForm],
   template: ` <lab-new-activity-form (create)="onCreate($event)" /> `,
   styles: [],
+  providers: [NewActivityFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class NewActivityPage {
-  #http = inject(HttpClient);
-  // ToDO: use a facade
-  onCreate(activity: any) {
-    const url = 'http://localhost:3000/activities';
-    // To do: add id, slug, userId and status
-    this.#http.post(url, activity).subscribe((response) => {
-      console.log(response);
-    });
+  #facade = inject(NewActivityFacade);
+
+  onCreate(activity: ActivityForm) {
+    this.#facade.postActivity(activity).subscribe();
   }
 }
