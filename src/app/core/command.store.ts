@@ -46,5 +46,6 @@ export class CommandStore<T> {
     this.#isWorking.set(false);
     this.#result.set(result);
     this.#error.set(null);
+    console.log('result', result);
   }
 }
