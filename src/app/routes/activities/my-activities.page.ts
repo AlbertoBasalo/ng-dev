@@ -17,7 +17,6 @@ import { MyActivitiesFacade } from './my-activities.facade';
     RouterLink,
   ],
   template: `
-    My activities
     <lab-loading *ngIf="getMyActivitiesStore.isWorking()" />
     <lab-list
       *ngIf="getMyActivitiesStore.isCompleted()"

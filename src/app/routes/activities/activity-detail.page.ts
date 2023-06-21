@@ -49,18 +49,19 @@ import { ActivityDetailFacade } from './activity-detail.facade';
         </footer>
       </article>
     </ng-container>
-    <ng-container *ngIf="putActivityStore.isCompleted()">
+    <ng-container *ngIf="postBookingStore.isCompleted()">
       <dialog
         id="booked-activity-dialog"
-        *ngIf="putActivityStore.result() as activity"
-        [open]="putActivityStore.isCompleted()">
+        *ngIf="postBookingStore.result() as booking"
+        [open]="postBookingStore.isCompleted()">
         <article>
           <header>
             <a href="#close" aria-label="Close" class="close"></a>
             <h4>Activity Booked</h4>
           </header>
           <p>
-            You have booked {{ activity.title }} for {{ activity.date | date }}.
+            You have booked {{ booking.participants }} ticket on
+            {{ booking.date | date }}.
           </p>
         </article>
       </dialog>
@@ -74,7 +75,7 @@ export default class ActivityDetailPage implements OnInit {
   #activityDetailFacade: ActivityDetailFacade = inject(ActivityDetailFacade);
   @Input() slug: string | null = null;
   getActivityStore = this.#activityDetailFacade.getActivityStore;
-  putActivityStore = this.#activityDetailFacade.putActivityBookingStore;
+  postBookingStore = this.#activityDetailFacade.postBookingStore;
   description = computed(() =>
     this.#activityDetailFacade.getDescription(this.getActivityStore.result())
   );

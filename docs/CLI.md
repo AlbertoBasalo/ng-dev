@@ -41,7 +41,7 @@ ng g c routes/activities/new-activity --type=form
 ng g c routes/activities/activity --type=item
 ng g p shared/truncate
 
-// create form control
+// add api server
 
 Standardize component types
 
