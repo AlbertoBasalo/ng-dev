@@ -270,14 +270,5 @@
       "id": 2
     }
   ],
-  "bookings": [
-    {
-      "id": 638,
-      "activityId": 5,
-      "userId": 2,
-      "date": "2023-06-21T11:51:43.638Z",
-      "participants": 1,
-      "state": "booked"
-    }
-  ]
+  "bookings": []
 }
