@@ -3,9 +3,9 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
-import { authInterceptor } from './core/auth.interceptor';
-import { ErrorHandlerService } from './core/errors/error-handler.service';
-import { errorInterceptor } from './core/errors/error.interceptor';
+import { authInterceptor } from './shared/auth.interceptor';
+import { ErrorHandlerService } from './shared/errors/error-handler.service';
+import { errorInterceptor } from './shared/errors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

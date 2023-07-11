@@ -1,17 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Activity } from 'src/app/core/activity.interface';
-import { CommandState } from 'src/app/core/command.state';
+import { ActivitiesService } from 'src/app/shared/activities.service';
+import { CommandState } from 'src/app/shared/command.state';
+import { Activity } from 'src/app/shared/models/activity.interface';
 
 @Injectable()
 export class HomeFacade {
-  #http = inject(HttpClient);
+  #activitiesService = inject(ActivitiesService);
   getActivitiesStore = new CommandState<Activity[]>([]);
 
   getActivities(): void {
-    const api = 'http://localhost:3000/activities';
-    const url = `${api}?state=published`;
-    const command$ = this.#http.get<Activity[]>(url);
+    const command$ = this.#activitiesService.getByState('published');
     this.getActivitiesStore.execute(command$);
   }
 }

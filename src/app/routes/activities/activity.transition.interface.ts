@@ -1,4 +1,4 @@
-import { ActivityState } from 'src/app/core/activity.interface';
+import { ActivityState } from 'src/app/shared/models/activity.interface';
 
 export interface ActivityTransition {
   caption: string;

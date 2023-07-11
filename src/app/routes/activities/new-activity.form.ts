@@ -11,9 +11,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Activity } from 'src/app/core/activity.interface';
-import { getError, markError } from 'src/app/core/form.functions';
 import { ControlBlock } from 'src/app/shared/control.block';
+import { getError, markError } from 'src/app/shared/form.functions';
+import { Activity } from 'src/app/shared/models/activity.interface';
 
 @Component({
   selector: 'lab-new-activity-form',

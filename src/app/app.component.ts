@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ErrorDialog } from './core/errors/error.dialog';
-import { GlobalStore } from './core/global.store';
 import { FooterComponent } from './layout/footer.component';
 import { HeaderComponent } from './layout/header.component';
+import { ErrorDialog } from './shared/errors/error.dialog';
+import { GlobalStore } from './shared/global.store';
 
 @Component({
   selector: 'lab-root',

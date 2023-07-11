@@ -6,11 +6,14 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { Activity, ActivityState } from 'src/app/core/activity.interface';
 import { DataBlock } from 'src/app/shared/data.block';
 import { DateBlock } from 'src/app/shared/date.block';
 import { LinkBlock } from 'src/app/shared/link.block';
 import { LocationBlock } from 'src/app/shared/location.block';
+import {
+  Activity,
+  ActivityState,
+} from 'src/app/shared/models/activity.interface';
 import { PriceBlock } from 'src/app/shared/price.block';
 import {
   ACTIVITY_TRANSITIONS,

@@ -11,13 +11,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { UserRegistration } from 'src/app/core/user-token.interface';
 import {
   getError,
   markError,
   mismatch,
   passwordValidations,
-} from 'src/app/core/form.functions';
-import { UserRegistration } from 'src/app/core/user-token.interface';
+} from 'src/app/shared/form.functions';
 
 @Component({
   selector: 'lab-sign-up-form',

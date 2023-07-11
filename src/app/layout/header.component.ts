@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GlobalStore } from '../core/global.store';
+import { GlobalStore } from '../shared/global.store';
 
 @Component({
   selector: 'lab-header',

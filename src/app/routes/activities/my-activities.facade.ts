@@ -1,27 +1,27 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Activity, DEFAULT_ACTIVITY } from 'src/app/core/activity.interface';
-import { CommandState } from 'src/app/core/command.state';
-import { GlobalStore } from 'src/app/core/global.store';
+import { CommandState } from 'src/app/shared/command.state';
+import { GlobalStore } from 'src/app/shared/global.store';
+import {
+  Activity,
+  DEFAULT_ACTIVITY,
+} from 'src/app/shared/models/activity.interface';
+import { ActivitiesService } from '../../shared/activities.service';
 
 @Injectable()
 export class MyActivitiesFacade {
-  #http = inject(HttpClient);
+  #activitiesService = inject(ActivitiesService);
   #globalStore = inject(GlobalStore);
-  #api = 'http://localhost:3000/activities';
   getMyActivitiesStore = new CommandState<Activity[]>([]);
   putActivityStore = new CommandState<Activity>(DEFAULT_ACTIVITY);
 
   getMyActivities(): void {
     const userId = this.#globalStore.userId();
-    const url = `${this.#api}/?userId=${userId}`;
-    const command$ = this.#http.get<Activity[]>(url);
+    const command$ = this.#activitiesService.getByUserId(userId);
     this.getMyActivitiesStore.execute(command$);
   }
 
   putActivity(activity: Activity): void {
-    const url = `${this.#api}/${activity.id}`;
-    const command$ = this.#http.put<Activity>(url, activity);
+    const command$ = this.#activitiesService.putActivity(activity);
     this.putActivityStore.execute(command$);
   }
 }

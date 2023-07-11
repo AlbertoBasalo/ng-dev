@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { getControlError, markControlError } from '../core/form.functions';
+import { getControlError, markControlError } from './form.functions';
 
 @Component({
   selector: 'lab-control',

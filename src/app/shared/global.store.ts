@@ -1,7 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { HandledError } from './errors/handled-error.class';
-import { DEFAULT_USER_TOKEN, UserToken } from './user-token.interface';
+import { DEFAULT_USER_TOKEN, UserToken } from './models/user-token.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalStore {

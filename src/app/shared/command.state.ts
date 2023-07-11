@@ -24,6 +24,24 @@ export class CommandState<T> {
     });
   }
 
+  setStarted(): void {
+    this.#isWorking.set(true);
+    this.#result.set(this.defaultValue);
+    this.#error.set(null);
+  }
+
+  setSucceed(result: T): void {
+    this.#isWorking.set(false);
+    this.#result.set(result);
+    this.#error.set(null);
+  }
+
+  setFailed(error: object): void {
+    this.#isWorking.set(false);
+    this.#result.set(this.defaultValue);
+    this.#error.set(error);
+  }
+
   protected getErrorMessage(error: object | null): string {
     if (!error) return '';
     if ('message' in error) return error.message as string;
@@ -31,21 +49,15 @@ export class CommandState<T> {
   }
 
   private onStart(): void {
-    this.#isWorking.set(true);
-    this.#result.set(this.defaultValue);
-    this.#error.set(null);
-  }
-  private onFail(error: object): void {
-    this.#subscription.unsubscribe();
-    this.#isWorking.set(false);
-    this.#result.set(this.defaultValue);
-    this.#error.set(error);
+    this.setStarted();
   }
   private onSucceed(result: T): void {
     this.#subscription.unsubscribe();
-    this.#isWorking.set(false);
-    this.#result.set(result);
-    this.#error.set(null);
-    console.log('result', result);
+    this.setSucceed(result);
+  }
+
+  private onFail(error: object): void {
+    this.#subscription.unsubscribe();
+    this.setFailed(error);
   }
 }
