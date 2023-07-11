@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DateBlock } from 'src/app/shared/date.block';
-import { LinkBlock } from 'src/app/shared/link.block';
 import {
   Activity,
   DEFAULT_ACTIVITY,
 } from 'src/app/shared/models/activity.interface';
-import { PriceBlock } from 'src/app/shared/price.block';
+import { DateBlock } from 'src/app/shared/ui/date.block';
+import { LinkBlock } from 'src/app/shared/ui/link.block';
+import { PriceBlock } from 'src/app/shared/ui/price.block';
 
 @Component({
   selector: 'lab-activity',

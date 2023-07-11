@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ListComponent } from 'src/app/shared/list.component';
-import { LoadingComponent } from 'src/app/shared/loading.component';
+import { ListComponent } from 'src/app/shared/ui/list.component';
+import { LoadingComponent } from 'src/app/shared/ui/loading.component';
 import { ActivityItem } from './activity.item';
 import { HomeFacade } from './home.facade';
 @Component({

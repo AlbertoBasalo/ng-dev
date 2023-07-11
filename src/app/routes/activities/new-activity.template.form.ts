@@ -6,8 +6,8 @@ import {
   Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ControlBlock } from 'src/app/shared/control.block';
 import { Activity } from 'src/app/shared/models/activity.interface';
+import { ControlBlock } from 'src/app/shared/ui/control.block';
 
 @Component({
   selector: 'lab-new-activity-form-template',

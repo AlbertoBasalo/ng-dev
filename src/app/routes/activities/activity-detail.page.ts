@@ -7,10 +7,10 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import { DataBlock } from 'src/app/shared/data.block';
-import { DateBlock } from 'src/app/shared/date.block';
-import { LocationBlock } from 'src/app/shared/location.block';
-import { PriceBlock } from 'src/app/shared/price.block';
+import { DataBlock } from 'src/app/shared/ui/data.block';
+import { DateBlock } from 'src/app/shared/ui/date.block';
+import { LocationBlock } from 'src/app/shared/ui/location.block';
+import { PriceBlock } from 'src/app/shared/ui/price.block';
 import { ActivityDetailFacade } from './activity-detail.facade';
 
 @Component({
