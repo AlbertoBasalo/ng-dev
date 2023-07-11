@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Activity } from 'src/app/core/activity.interface';
-import { CommandStore } from 'src/app/core/command.store';
+import { CommandState } from 'src/app/core/command.state';
 
 @Injectable()
 export class HomeFacade {
   #http = inject(HttpClient);
-  getActivitiesStore = new CommandStore<Activity[]>([]);
+  getActivitiesStore = new CommandState<Activity[]>([]);
 
   getActivities(): void {
     const api = 'http://localhost:3000/activities';

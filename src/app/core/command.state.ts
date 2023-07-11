@@ -1,7 +1,7 @@
 import { computed, signal } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
-export class CommandStore<T> {
+export class CommandState<T> {
   #subscription!: Subscription;
   readonly #isWorking = signal(false);
   readonly #result = signal<T>(this.defaultValue);

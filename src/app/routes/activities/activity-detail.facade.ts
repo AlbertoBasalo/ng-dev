@@ -4,12 +4,12 @@ import * as Mark from 'marked';
 import { map, tap } from 'rxjs';
 import { Activity, DEFAULT_ACTIVITY } from 'src/app/core/activity.interface';
 import { Booking, DEFAULT_BOOKING } from 'src/app/core/booking.interface';
-import { CommandStore } from 'src/app/core/command.store';
+import { CommandState } from 'src/app/core/command.state';
 @Injectable()
 export class ActivityDetailFacade {
   #http = inject(HttpClient);
-  getActivityStore = new CommandStore<Activity>(DEFAULT_ACTIVITY);
-  postBookingStore = new CommandStore<Booking>(DEFAULT_BOOKING);
+  getActivityStore = new CommandState<Activity>(DEFAULT_ACTIVITY);
+  postBookingStore = new CommandState<Booking>(DEFAULT_BOOKING);
   getActivity(slug: string): void {
     const api = 'http://localhost:3000/activities';
     const url = `${api}?slug=${slug}`;
