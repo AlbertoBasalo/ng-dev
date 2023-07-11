@@ -44,7 +44,10 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css", "node_modules/@picocss/pico/css/pico.min.css"],
+            "styles": [
+              "src/styles.css",
+              "node_modules/@picocss/pico/css/pico.min.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -90,16 +93,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "ng-dev:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
-            "scripts": []
           }
         }
       }

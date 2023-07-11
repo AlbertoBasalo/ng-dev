@@ -58,3 +58,7 @@ Standardize service/class types
 
 - [x] facade
 - [x] store
+
+Jest
+
+npm install jest @types/jest jest-preset-angular --save-dev
