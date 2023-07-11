@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './layout/footer.component';
 import { HeaderComponent } from './layout/header.component';
 import { ErrorDialog } from './shared/errors/error.dialog';
-import { GlobalStore } from './shared/global.store';
+import { GlobalState } from './shared/global.state';
 
 @Component({
   selector: 'lab-root',
@@ -27,6 +27,6 @@ import { GlobalStore } from './shared/global.store';
   styles: [],
 })
 export class AppComponent {
-  globalStore = inject(GlobalStore);
+  globalStore = inject(GlobalState);
   title = '🎫 Activity Bookings';
 }

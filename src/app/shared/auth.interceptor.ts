@@ -1,9 +1,9 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { GlobalStore } from './global.store';
+import { GlobalState } from './global.state';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const globalStore = inject(GlobalStore);
+  const globalStore = inject(GlobalState);
   const apiToken = globalStore.apiToken();
   if (!apiToken) return next(req);
   req = req.clone({

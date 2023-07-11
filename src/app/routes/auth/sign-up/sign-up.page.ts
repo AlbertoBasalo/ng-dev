@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
 import { CommandState } from 'src/app/shared/command.state';
 
-import { GlobalStore } from 'src/app/shared/global.store';
+import { GlobalState } from 'src/app/shared/global.state';
 import {
   DEFAULT_USER_TOKEN,
   UserRegistration,
@@ -22,7 +22,7 @@ import { SignUpForm } from './sign-up.form';
 })
 export default class SignUpPage {
   #http = inject(HttpClient);
-  #globalStore = inject(GlobalStore);
+  #globalStore = inject(GlobalState);
 
   postRegisterStore = new CommandState<UserToken>(DEFAULT_USER_TOKEN);
 

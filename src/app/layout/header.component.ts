@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GlobalStore } from '../shared/global.store';
+import { GlobalState } from '../shared/global.state';
 
 @Component({
   selector: 'lab-header',
@@ -52,7 +52,7 @@ import { GlobalStore } from '../shared/global.store';
 })
 export class HeaderComponent {
   @Input({ required: true }) title: string = '';
-  #globalStore = inject(GlobalStore);
+  #globalStore = inject(GlobalState);
   isLogged = this.#globalStore.isLogged;
   user = this.#globalStore.user;
 }

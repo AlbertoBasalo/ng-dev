@@ -36,7 +36,7 @@ import { MyActivitiesFacade } from './my-activities.facade';
 })
 export default class MyActivitiesPage {
   #myActivitiesFacade: MyActivitiesFacade = inject(MyActivitiesFacade);
-  getMyActivitiesStore = this.#myActivitiesFacade.getMyActivitiesStore;
+  getMyActivitiesStore = this.#myActivitiesFacade.getMyActivitiesState;
   constructor() {
     this.#myActivitiesFacade.getMyActivities();
   }

@@ -1,27 +1,27 @@
 import { Injectable, inject } from '@angular/core';
-import { CommandState } from 'src/app/shared/command.state';
-import { GlobalStore } from 'src/app/shared/global.store';
+import { ActivitiesService } from '../../shared/activities.service';
+import { CommandState } from '../../shared/command.state';
+import { GlobalState } from '../../shared/global.state';
 import {
   Activity,
   DEFAULT_ACTIVITY,
-} from 'src/app/shared/models/activity.interface';
-import { ActivitiesService } from '../../shared/activities.service';
+} from '../../shared/models/activity.interface';
 
 @Injectable()
 export class MyActivitiesFacade {
   #activitiesService = inject(ActivitiesService);
-  #globalStore = inject(GlobalStore);
-  getMyActivitiesStore = new CommandState<Activity[]>([]);
-  putActivityStore = new CommandState<Activity>(DEFAULT_ACTIVITY);
+  #globalState = inject(GlobalState);
+  getMyActivitiesState = new CommandState<Activity[]>([]);
+  putActivityState = new CommandState<Activity>(DEFAULT_ACTIVITY);
 
   getMyActivities(): void {
-    const userId = this.#globalStore.userId();
+    const userId = this.#globalState.userId();
     const command$ = this.#activitiesService.getByUserId(userId);
-    this.getMyActivitiesStore.execute(command$);
+    this.getMyActivitiesState.execute(command$);
   }
 
   putActivity(activity: Activity): void {
     const command$ = this.#activitiesService.putActivity(activity);
-    this.putActivityStore.execute(command$);
+    this.putActivityState.execute(command$);
   }
 }

@@ -4,7 +4,7 @@ import { HandledError } from './errors/handled-error.class';
 import { DEFAULT_USER_TOKEN, UserToken } from './models/user-token.interface';
 
 @Injectable({ providedIn: 'root' })
-export class GlobalStore {
+export class GlobalState {
   readonly #router = inject(Router);
   readonly #localStorage = new LocalStorage('user-access-token');
   readonly #userToken = signal<UserToken>(DEFAULT_USER_TOKEN);

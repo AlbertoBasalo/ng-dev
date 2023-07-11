@@ -1,11 +1,11 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { GlobalStore } from '../global.store';
+import { GlobalState } from '../global.state';
 import { HandledError } from './handled-error.class';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const globalStore = inject(GlobalStore);
+  const globalStore = inject(GlobalState);
   return next(req).pipe(
     catchError((err) => {
       let error = new HandledError(err);
