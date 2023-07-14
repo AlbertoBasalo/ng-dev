@@ -17,10 +17,10 @@ import { MyActivitiesFacade } from './my-activities.facade';
     RouterLink,
   ],
   template: `
-    <lab-loading *ngIf="getMyActivitiesStore.isWorking()" />
+    <lab-loading *ngIf="isWorking()" />
     <lab-list
-      *ngIf="getMyActivitiesStore.isCompleted()"
-      [items]="getMyActivitiesStore.result()"
+      *ngIf="isCompleted()"
+      [items]="myActivities()"
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>
@@ -28,20 +28,33 @@ import { MyActivitiesFacade } from './my-activities.facade';
         [activity]="activity"
         (changeState)="onChangeState(activity, $event)" />
     </ng-template>
-    <a role="button" routerLink="/activities/new">Create a new Activity</a>
+    <a role="button" routerLink="/activities/new">Create a new Activity </a>
+    <pre *ngIf="hasPersistedActivity()" id="feedback">
+Activity status updated!
+    </pre
+    >
+    <pre *ngIf="failedToPersistActivity()" id="error-feedback">
+      Failed to update activity status!
+    </pre
+    >
   `,
   styles: [],
   providers: [MyActivitiesFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MyActivitiesPage {
-  #myActivitiesFacade: MyActivitiesFacade = inject(MyActivitiesFacade);
-  getMyActivitiesStore = this.#myActivitiesFacade.getMyActivitiesState;
+  #facade: MyActivitiesFacade = inject(MyActivitiesFacade);
+  isWorking = this.#facade.getMyActivitiesState.isWorking;
+  isCompleted = this.#facade.getMyActivitiesState.isCompleted;
+  myActivities = this.#facade.getMyActivitiesState.result;
+  hasPersistedActivity = this.#facade.putActivityState.isCompleted;
+  failedToPersistActivity = this.#facade.putActivityState.hasError;
   constructor() {
-    this.#myActivitiesFacade.getMyActivities();
+    this.#facade.getMyActivities();
   }
+
   onChangeState(activity: any, state: string) {
     activity.state = state;
-    this.#myActivitiesFacade.putActivity(activity);
+    this.#facade.putActivity(activity);
   }
 }

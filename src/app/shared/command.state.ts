@@ -1,6 +1,8 @@
 import { computed, signal } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
+// To do: rename to something like "APICommandState" or "SignalState"
+
 export class CommandState<T> {
   #subscription!: Subscription;
   readonly #isWorking = signal(false);

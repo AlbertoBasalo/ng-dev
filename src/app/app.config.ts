@@ -3,7 +3,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
-import { authInterceptor } from './shared/auth.interceptor';
+import { authInterceptor } from './routes/auth/auth.interceptor';
 import { ErrorHandlerService } from './shared/errors/error-handler.service';
 import { errorInterceptor } from './shared/errors/error.interceptor';
 
