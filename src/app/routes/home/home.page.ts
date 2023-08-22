@@ -33,6 +33,10 @@ export class HomePage {
   getActivitiesStore = this.#homeFacade.getActivitiesStore;
 
   constructor() {
+    this.getActivities();
+  }
+
+  getActivities() {
     this.#homeFacade.getActivities();
   }
 }
