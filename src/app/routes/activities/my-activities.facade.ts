@@ -4,15 +4,15 @@ import {
   Activity,
   DEFAULT_ACTIVITY,
 } from '../../shared/domain/models/activity.interface';
-import { CommandState } from '../../shared/state/command.state';
-import { GlobalState } from '../../shared/state/global.state';
+import { CommandStore } from '../../shared/state/command.store';
+import { GlobalStore } from '../../shared/state/global.store';
 
 @Injectable()
 export class MyActivitiesFacade {
   #activitiesService = inject(ActivitiesService);
-  #globalState = inject(GlobalState);
-  getMyActivitiesState = new CommandState<Activity[]>([]);
-  putActivityState = new CommandState<Activity>(DEFAULT_ACTIVITY);
+  #globalState = inject(GlobalStore);
+  getMyActivitiesState = new CommandStore<Activity[]>([]);
+  putActivityState = new CommandStore<Activity>(DEFAULT_ACTIVITY);
 
   getMyActivities(): void {
     const userId = this.#globalState.userId();

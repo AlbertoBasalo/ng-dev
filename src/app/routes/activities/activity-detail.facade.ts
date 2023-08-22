@@ -12,14 +12,14 @@ import {
   DEFAULT_BOOKING,
 } from 'src/app/shared/domain/models/booking.interface';
 import { getNewId } from 'src/app/shared/domain/utils/identifier.functions';
-import { CommandState } from 'src/app/shared/state/command.state';
+import { CommandStore } from 'src/app/shared/state/command.store';
 
 @Injectable()
 export class ActivityDetailFacade {
   #activitiesService = inject(ActivitiesService);
   #bookingService = inject(BookingsService);
-  getActivityStore = new CommandState<Activity>(DEFAULT_ACTIVITY);
-  postBookingStore = new CommandState<Booking>(DEFAULT_BOOKING);
+  getActivityStore = new CommandStore<Activity>(DEFAULT_ACTIVITY);
+  postBookingStore = new CommandStore<Booking>(DEFAULT_BOOKING);
   getActivity(slug: string): void {
     const command$ = this.#activitiesService
       .getBySlug(slug)

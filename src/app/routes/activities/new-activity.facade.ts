@@ -5,12 +5,12 @@ import {
   getNewId,
   getSlug,
 } from 'src/app/shared/domain/utils/identifier.functions';
-import { GlobalState } from 'src/app/shared/state/global.state';
+import { GlobalStore } from 'src/app/shared/state/global.store';
 
 @Injectable()
 export class NewActivityFacade {
   #activitiesService = inject(ActivitiesService);
-  #globalStore = inject(GlobalState);
+  #globalStore = inject(GlobalStore);
   postActivity(activity: Omit<Activity, 'id' | 'slug' | 'userId' | 'state'>) {
     const userId = this.#globalStore.userId();
     const payload: Activity = {

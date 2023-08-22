@@ -7,7 +7,7 @@ import {
 import { HandledError } from '../errors/handled-error.class';
 
 @Injectable({ providedIn: 'root' })
-export class GlobalState {
+export class GlobalStore {
   readonly #router = inject(Router);
   readonly #localStorage = new LocalStorage('user-access-token');
   readonly #userToken = signal<UserToken>(DEFAULT_USER_TOKEN);

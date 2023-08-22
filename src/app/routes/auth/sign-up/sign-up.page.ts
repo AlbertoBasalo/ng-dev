@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
-import { CommandState } from 'src/app/shared/state/command.state';
+import { CommandStore } from 'src/app/shared/state/command.store';
 
 import {
   DEFAULT_USER_TOKEN,
   UserRegistration,
   UserToken,
 } from 'src/app/shared/domain/models/user-token.interface';
-import { GlobalState } from 'src/app/shared/state/global.state';
+import { GlobalStore } from 'src/app/shared/state/global.store';
 import { SignUpForm } from './sign-up.form';
 
 @Component({
@@ -22,9 +22,9 @@ import { SignUpForm } from './sign-up.form';
 })
 export default class SignUpPage {
   #http = inject(HttpClient);
-  #globalStore = inject(GlobalState);
+  #globalStore = inject(GlobalStore);
 
-  postRegisterStore = new CommandState<UserToken>(DEFAULT_USER_TOKEN);
+  postRegisterStore = new CommandStore<UserToken>(DEFAULT_USER_TOKEN);
 
   onSingUp(newCredentials: UserRegistration): void {
     const api = 'http://localhost:3000/register';
