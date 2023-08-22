@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Activity } from 'src/app/shared/models/activity.interface';
+import { Activity } from 'src/app/shared/domain/models/activity.interface';
 import { ControlBlock } from 'src/app/shared/ui/control.block';
 
 @Component({

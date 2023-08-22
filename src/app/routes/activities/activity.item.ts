@@ -9,7 +9,7 @@ import {
 import {
   Activity,
   ActivityState,
-} from 'src/app/shared/models/activity.interface';
+} from 'src/app/shared/domain/models/activity.interface';
 
 import { DataBlock } from 'src/app/shared/ui/data.block';
 import { DateBlock } from 'src/app/shared/ui/date.block';

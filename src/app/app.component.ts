@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './layout/footer.component';
 import { HeaderComponent } from './layout/header.component';
 import { ErrorDialog } from './shared/errors/error.dialog';
-import { GlobalState } from './shared/global.state';
+import { GlobalState } from './shared/state/global.state';
 
 @Component({
   selector: 'lab-root',

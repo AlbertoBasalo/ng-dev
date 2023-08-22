@@ -1,7 +1,10 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { HandledError } from './errors/handled-error.class';
-import { DEFAULT_USER_TOKEN, UserToken } from './models/user-token.interface';
+import {
+  DEFAULT_USER_TOKEN,
+  UserToken,
+} from '../domain/models/user-token.interface';
+import { HandledError } from '../errors/handled-error.class';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalState {

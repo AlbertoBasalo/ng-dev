@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
-import { CommandState } from 'src/app/shared/command.state';
+import { CommandState } from 'src/app/shared/state/command.state';
 
-import { GlobalState } from 'src/app/shared/global.state';
 import {
   DEFAULT_USER_TOKEN,
   UserRegistration,
   UserToken,
-} from 'src/app/shared/models/user-token.interface';
+} from 'src/app/shared/domain/models/user-token.interface';
+import { GlobalState } from 'src/app/shared/state/global.state';
 import { SignUpForm } from './sign-up.form';
 
 @Component({

@@ -32,7 +32,7 @@ describe('The getNewId function', function () {
   it('should not produce more than 16 different each millisecond', function () {
     const actualIds = new Set();
     const MAX_IDS = 16;
-    for (let i = 0; i < MAX_IDS + 1; i++) {
+    for (let i = 0; i < MAX_IDS + 2; i++) {
       const id = getNewId();
       actualIds.add(id);
     }

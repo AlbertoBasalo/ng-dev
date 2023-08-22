@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Activity } from 'src/app/shared/models/activity.interface';
+import { Activity } from 'src/app/shared/domain/models/activity.interface';
 import { NewActivityFacade } from './new-activity.facade';
 import { NewActivityForm } from './new-activity.form';
 

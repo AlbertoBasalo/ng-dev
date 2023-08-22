@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { ActivitiesService } from '../../shared/activities.service';
-import { CommandState } from '../../shared/command.state';
-import { GlobalState } from '../../shared/global.state';
+import { ActivitiesService } from '../../shared/data/activities.service';
 import {
   Activity,
   DEFAULT_ACTIVITY,
-} from '../../shared/models/activity.interface';
+} from '../../shared/domain/models/activity.interface';
+import { CommandState } from '../../shared/state/command.state';
+import { GlobalState } from '../../shared/state/global.state';
 
 @Injectable()
 export class MyActivitiesFacade {

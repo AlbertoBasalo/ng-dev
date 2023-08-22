@@ -1,18 +1,18 @@
 import { Injectable, inject } from '@angular/core';
 import * as Mark from 'marked';
 import { tap } from 'rxjs';
-import { CommandState } from 'src/app/shared/command.state';
-import { getNewId } from 'src/app/shared/identifier.functions';
+import { ActivitiesService } from 'src/app/shared/data/activities.service';
+import { BookingsService } from 'src/app/shared/data/bookings.service';
 import {
   Activity,
   DEFAULT_ACTIVITY,
-} from 'src/app/shared/models/activity.interface';
+} from 'src/app/shared/domain/models/activity.interface';
 import {
   Booking,
   DEFAULT_BOOKING,
-} from 'src/app/shared/models/booking.interface';
-import { ActivitiesService } from '../../shared/activities.service';
-import { BookingsService } from '../../shared/bookings.service';
+} from 'src/app/shared/domain/models/booking.interface';
+import { getNewId } from 'src/app/shared/domain/utils/identifier.functions';
+import { CommandState } from 'src/app/shared/state/command.state';
 
 @Injectable()
 export class ActivityDetailFacade {

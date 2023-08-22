@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   Activity,
   DEFAULT_ACTIVITY,
-} from 'src/app/shared/models/activity.interface';
+} from 'src/app/shared/domain/models/activity.interface';
 import { DateBlock } from 'src/app/shared/ui/date.block';
 import { LinkBlock } from 'src/app/shared/ui/link.block';
 import { PriceBlock } from 'src/app/shared/ui/price.block';

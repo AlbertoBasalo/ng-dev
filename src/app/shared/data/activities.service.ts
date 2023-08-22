@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Activity } from 'src/app/shared/models/activity.interface';
+import { Activity } from '../domain/models/activity.interface';
 
 @Injectable({
   providedIn: 'root',

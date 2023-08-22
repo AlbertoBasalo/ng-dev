@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { GlobalState } from '../../shared/global.state';
+import { GlobalState } from '../../shared/state/global.state';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const globalStore = inject(GlobalState);

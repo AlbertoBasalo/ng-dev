@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { ActivitiesService } from '../../shared/activities.service';
-import { GlobalState } from '../../shared/global.state';
+import { ActivitiesService } from '../../shared/data/activities.service';
+import { GlobalState } from '../../shared/state/global.state';
 import { MyActivitiesFacade } from './my-activities.facade';
 
 describe('MyActivitiesFacade', () => {

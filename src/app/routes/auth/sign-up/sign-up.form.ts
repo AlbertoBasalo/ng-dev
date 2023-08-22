@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { UserRegistration } from 'src/app/shared/models/user-token.interface';
+import { UserRegistration } from 'src/app/shared/domain/models/user-token.interface';
 import {
   getError,
   markError,

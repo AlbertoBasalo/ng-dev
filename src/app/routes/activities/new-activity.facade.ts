@@ -1,8 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { GlobalState } from 'src/app/shared/global.state';
-import { getNewId, getSlug } from 'src/app/shared/identifier.functions';
-import { Activity } from 'src/app/shared/models/activity.interface';
-import { ActivitiesService } from '../../shared/activities.service';
+import { ActivitiesService } from 'src/app/shared/data/activities.service';
+import { Activity } from 'src/app/shared/domain/models/activity.interface';
+import {
+  getNewId,
+  getSlug,
+} from 'src/app/shared/domain/utils/identifier.functions';
+import { GlobalState } from 'src/app/shared/state/global.state';
 
 @Injectable()
 export class NewActivityFacade {

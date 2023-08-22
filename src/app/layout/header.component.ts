@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GlobalState } from '../shared/global.state';
+import { GlobalState } from '../shared/state/global.state';
 
 @Component({
   selector: 'lab-header',
