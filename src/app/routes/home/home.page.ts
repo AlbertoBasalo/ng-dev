@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ListComponent } from '../../shared/ui/list.component';
 import { LoadingComponent } from '../../shared/ui/loading.component';
 import { ActivityItemComponent } from './activity-item.component';
@@ -28,15 +33,11 @@ import { HomeFacade } from './home.facade';
   providers: [HomeFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePage {
+export class HomePage implements OnInit {
   #homeFacade: HomeFacade = inject(HomeFacade);
   getActivitiesStore = this.#homeFacade.getActivitiesStore;
 
-  constructor() {
-    this.getActivities();
-  }
-
-  getActivities() {
+  ngOnInit() {
     this.#homeFacade.getActivities();
   }
 }
