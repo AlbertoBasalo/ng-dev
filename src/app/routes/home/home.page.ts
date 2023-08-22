@@ -1,13 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ListComponent } from 'src/app/shared/ui/list.component';
-import { LoadingComponent } from 'src/app/shared/ui/loading.component';
-import { ActivityItem } from './activity.item';
+import { ListComponent } from '../../shared/ui/list.component';
+import { LoadingComponent } from '../../shared/ui/loading.component';
+import { ActivityItemComponent } from './activity-item.component';
 import { HomeFacade } from './home.facade';
 @Component({
   selector: 'lab-home',
   standalone: true,
-  imports: [CommonModule, LoadingComponent, ListComponent, ActivityItem],
+  imports: [
+    CommonModule,
+    LoadingComponent,
+    ListComponent,
+    ActivityItemComponent,
+  ],
   template: `
     <lab-loading *ngIf="getActivitiesStore.isWorking()" />
     <lab-list
@@ -16,7 +21,7 @@ import { HomeFacade } from './home.facade';
       [itemTemplate]="activityItem"
       caption="Published activities" />
     <ng-template #activityItem let-activity>
-      <lab-activity [activity]="activity" />
+      <lab-activity-item [activity]="activity" />
     </ng-template>
   `,
   styles: [],

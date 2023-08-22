@@ -3,13 +3,13 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   Activity,
   DEFAULT_ACTIVITY,
-} from 'src/app/shared/domain/models/activity.interface';
-import { DateBlock } from 'src/app/shared/ui/date.block';
-import { LinkBlock } from 'src/app/shared/ui/link.block';
-import { PriceBlock } from 'src/app/shared/ui/price.block';
+} from '../../shared/domain/models/activity.interface';
+import { DateBlock } from '../../shared/ui/date.block';
+import { LinkBlock } from '../../shared/ui/link.block';
+import { PriceBlock } from '../../shared/ui/price.block';
 
 @Component({
-  selector: 'lab-activity',
+  selector: 'lab-activity-item',
   standalone: true,
   imports: [CommonModule, LinkBlock, PriceBlock, DateBlock],
   template: `
@@ -28,6 +28,6 @@ import { PriceBlock } from 'src/app/shared/ui/price.block';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActivityItem {
+export class ActivityItemComponent {
   @Input({ required: true }) activity: Activity = DEFAULT_ACTIVITY;
 }

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { ActivitiesService } from 'src/app/shared/data/activities.service';
-import { Activity } from 'src/app/shared/domain/models/activity.interface';
-import { CommandStore } from 'src/app/shared/state/command.store';
+import { ActivitiesService } from '../../shared/data/activities.service';
+import { Activity } from '../../shared/domain/models/activity.interface';
+import { CommandStore } from '../../shared/state/command.store';
 
 @Injectable()
 export class HomeFacade {
