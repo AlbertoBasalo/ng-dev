@@ -18,8 +18,11 @@ git clone https://github.com/AlbertoBasalo/ng-dev.git
 cd ng_dev
 # install dependencies
 npm i
-# run project
+# run api server (in one terminal)
+npm run api
+# run project (in another terminal)
 npm start
+# open browser at http://localhost:4200
 ```
 
 ## 🛠 VS Code configuration

@@ -270,5 +270,22 @@
       "id": 2
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "id": "01abde91dd50",
+      "activityId": 13,
+      "userId": 1,
+      "date": "2023-08-22T07:15:21.045Z",
+      "participants": 1,
+      "state": "booked"
+    },
+    {
+      "id": "01abde9e61b0",
+      "activityId": 13,
+      "userId": 1,
+      "date": "2023-08-22T07:16:12.315Z",
+      "participants": 1,
+      "state": "booked"
+    }
+  ]
 }
