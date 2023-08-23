@@ -1,10 +1,7 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ListComponent } from '../../shared/ui/list.component';
-import { LoadingComponent } from '../../shared/ui/loading.component';
-import { ActivityItemComponent } from './activity-item.component';
 import { HomeFacade } from './home.facade';
 import { HomePage } from './home.page';
 
@@ -33,20 +30,15 @@ const homeFacadeCompletedStub = {
   },
 };
 
-describe('The Home Page component ISOLATED ONLY FROM DATA', () => {
+describe('The Home Page component NO ERRORS SCHEMA', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
   let dbgEl: DebugElement;
   let htmEl: HTMLElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HomePage,
-        LoadingComponent,
-        ListComponent,
-        ActivityItemComponent,
-        RouterTestingModule,
-      ],
+      imports: [HomePage, RouterTestingModule],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
   describe('when is initialized', () => {
