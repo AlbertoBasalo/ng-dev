@@ -5,6 +5,8 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
+import { Activity } from 'src/app/shared/domain/models/activity.interface';
+import { CommandStore } from 'src/app/shared/state/command.store';
 import { ListComponent } from '../../shared/ui/list.component';
 import { LoadingComponent } from '../../shared/ui/loading.component';
 import { ActivityItemComponent } from './activity-item.component';
@@ -35,7 +37,8 @@ import { HomeFacade } from './home.facade';
 })
 export class HomePage implements OnInit {
   #homeFacade: HomeFacade = inject(HomeFacade);
-  getActivitiesStore = this.#homeFacade.getActivitiesStore;
+  getActivitiesStore: CommandStore<Activity[]> =
+    this.#homeFacade.getActivitiesStore;
 
   ngOnInit() {
     this.#homeFacade.getActivities();

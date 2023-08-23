@@ -10,6 +10,7 @@ export class TruncatePipe implements PipeTransform {
     maxLength: number = 30,
     ellipsis: string = '...'
   ): unknown {
+    if (!value) return '';
     if (value.length <= maxLength) return value;
     return value.substring(0, maxLength) + ellipsis;
   }

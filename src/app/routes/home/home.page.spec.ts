@@ -1,4 +1,3 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -9,11 +8,11 @@ import { ActivityItemComponent } from './activity-item.component';
 import { HomeFacade } from './home.facade';
 import { HomePage } from './home.page';
 
-describe('The Home Page', () => {
+describe('The Home Page component', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
-  let dbEl: DebugElement;
-  let ntEl: HTMLElement;
+  let dbgEl: DebugElement;
+  let htmEl: HTMLElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -21,12 +20,11 @@ describe('The Home Page', () => {
         LoadingComponent,
         ListComponent,
         ActivityItemComponent,
-        HttpClientTestingModule,
         RouterTestingModule,
       ],
     }).compileComponents();
   });
-  describe('When data is loading', () => {
+  describe('when is initialized', () => {
     const homeFacadeInitialStub = {
       getActivities: jest.fn(),
       getActivitiesStore: {
@@ -41,15 +39,11 @@ describe('The Home Page', () => {
       });
       fixture = TestBed.createComponent(HomePage);
       component = fixture.componentInstance;
-      ntEl = fixture.nativeElement;
+      htmEl = fixture.nativeElement;
       fixture.detectChanges();
     });
-    it('should create', () => {
+    it('should create and instance', () => {
       expect(component).toBeTruthy();
-    });
-    it('should show loading when is working', () => {
-      const loading = ntEl.querySelector('lab-loading');
-      expect(loading).toBeTruthy();
     });
     it('should call getActivities on HomeFacade', () => {
       let homeFacadeSpy: jest.SpyInstance = jest.spyOn(
@@ -58,15 +52,27 @@ describe('The Home Page', () => {
       );
       expect(homeFacadeSpy).toHaveBeenCalled();
     });
+    it('should display the loading component', () => {
+      const loading = htmEl.querySelector('lab-loading');
+      expect(loading).toBeTruthy();
+    });
   });
 
-  describe('When data is complete loaded', () => {
+  describe('when data is loaded', () => {
     const homeFacadeCompletedStub = {
       getActivities: jest.fn(),
       getActivitiesStore: {
         isWorking: () => false,
         isCompleted: () => true,
-        result: () => [{ id: 1, title: 'test' }],
+        result: () => [
+          {
+            slug: 'test',
+            title: 'test',
+            price: 0,
+            currency: 'EUR',
+            date: new Date(),
+          },
+        ],
       },
     };
     beforeEach(async () => {
@@ -75,16 +81,27 @@ describe('The Home Page', () => {
       });
       fixture = TestBed.createComponent(HomePage);
       component = fixture.componentInstance;
-      dbEl = fixture.debugElement;
+      dbgEl = fixture.debugElement;
+      htmEl = fixture.nativeElement;
       fixture.detectChanges();
     });
-    it('should show list when is completed', () => {
-      const list = dbEl.query(By.css('lab-list'));
+    it('should display the list component', () => {
+      const list = dbgEl.query(By.css('lab-list'));
       expect(list).toBeTruthy();
     });
-    it('should have activity-item as item template', () => {
-      const activityItem = dbEl.query(By.css('lab-activity-item'));
+    it('should use activity-item as the template', () => {
+      const activityItem = dbgEl.query(By.css('lab-activity-item'));
       expect(activityItem).toBeTruthy();
+    });
+    it('should display the activity title (using debug)', () => {
+      const list = dbgEl.query(By.css('lab-list'));
+      const caption = list?.nativeElement.textContent;
+      expect(caption).toContain('Published activities');
+    });
+    it('should display the activity title (using native)', () => {
+      const list = htmEl.querySelector('lab-list');
+      const caption = list?.getAttribute('caption');
+      expect(caption).toContain('Published activities');
     });
   });
 });
