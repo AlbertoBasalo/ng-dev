@@ -1,3 +1,5 @@
+ng new nd-dev -s -t -p=lab --routing --standalone --style=css
+
 ng g c layout/header
 ng g c layout/footer
 ng g c routes/home --type=page

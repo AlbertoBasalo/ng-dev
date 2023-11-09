@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ContainerComponent } from './lab/container.component';
 import { HomePage } from './routes/home/home.page';
 
 export const routes: Routes = [
@@ -21,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'activities/:slug',
     loadComponent: () => import('./routes/activities/activity-detail.page'),
+  },
+  {
+    path: 'labs',
+    component: ContainerComponent,
   },
   {
     path: '**',
